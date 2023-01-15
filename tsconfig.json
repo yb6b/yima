@@ -9,6 +9,8 @@
       "@c/*":["src/components/*"],
       "@p/*":["src/pages/*"],
       "@l/*":["src/layouts/*"],
+      "@s/*":["src/styles/*"],
+      "@config":["src/config.js"]
     }
   }
 }

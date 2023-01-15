@@ -1,8 +1,8 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
+import BaseHead from "@l/MainLayout/BaseHead.astro";
+import Header from "@l/MainLayout/Header.astro";
+import Footer from "@l/MainLayout/Footer.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "@config";
 
 const posts = (await Astro.glob("./blog/*.{md,mdx}")).sort(
   (a, b) =>
@@ -33,7 +33,7 @@ const posts = (await Astro.glob("./blog/*.{md,mdx}")).sort(
     </style>
   </head>
   <body>
-    <Header />
+    <Header title="逸码 V20" base="/V20"/>
     <main>
       <section>
         <ul>

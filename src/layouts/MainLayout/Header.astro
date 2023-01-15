@@ -1,0 +1,87 @@
+---
+import githubLogo from "./assets/github.png";
+import QqLogo from './assets/QQ.png';
+import YsepanLogo from './assets/ysepan.png';
+export interface Props {
+  /** 标题 */
+  title: string;
+  /** 路由前缀 */
+  base: string;
+}
+const {title,base} = Astro.props;
+---
+
+<nav class="navbar is-light" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="https://yb6b.github.io/yima">
+      <img src="/yima/assets/yi-cursive.svg" height="28" />
+      <b class="ml-3" set:text={title}></b>
+    </a>
+
+    <a
+      role="button"
+      class="navbar-burger"
+      aria-label="menu"
+      aria-expanded="false"
+      data-target="navbarBasicExample"
+    >
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item"> 首页</a>
+
+      <a class="navbar-item"> 文档</a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link"> 训练</a>
+
+        <div class="navbar-dropdown">
+          <a class="navbar-item"> 字根训练</a>
+          <a class="navbar-item"> 单字训练</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link"> 联系我们</a>
+        <div class="navbar-dropdown">
+          <a href="https://jq.qq.com/?_wv=1027&k=5V71KdOJ" target="_blank" class="navbar-item">
+            <span class="icon"><img src={QqLogo} /></span>
+            <span>加入QQ群</span>
+          </a>
+          <a href="http://yima.ysepan.com/" target="_blank" class="navbar-item">
+            <span class="icon"><img src={YsepanLogo} height="16" width="16" /></span>
+            <span>访问网盘</span>
+          </a>
+          <a href="https://github.com/lakent/yi/issues" target="_blank" class="navbar-item">
+            <span class="icon"><img src={githubLogo} /></span>
+            <span>提交建议</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const $navbarBurgers = Array.prototype.slice.call(
+      document.querySelectorAll(".navbar-burger"),
+      0
+    );
+
+    $navbarBurgers.forEach((el) => {
+      el.addEventListener("click", () => {
+        const target = el.dataset.target;
+        const $target = document.getElementById(target);
+        el.classList.toggle("is-active");
+        $target.classList.toggle("is-active");
+      });
+    });
+  });
+</script>
