@@ -1,6 +1,6 @@
 ---
-import githubLogo from "./assets/github.png";
-import QqLogo from './assets/QQ.png';
+import githubLogo from "./assets/github.svg";
+import QqLogo from './assets/QQ.svg';
 import YsepanLogo from './assets/ysepan.png';
 export interface Props {
   /** 标题 */
@@ -11,7 +11,7 @@ export interface Props {
 const {title,base} = Astro.props;
 ---
 
-<nav class="navbar is-light" role="navigation" aria-label="main navigation">
+<nav class="navbar is-light is-fixed-top" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
     <a class="navbar-item" href="https://yb6b.github.io/yima">
       <img src="/yima/assets/yi-cursive.svg" height="28" />
@@ -68,6 +68,7 @@ const {title,base} = Astro.props;
     </div>
   </div>
 </nav>
+<nav class="navbar is-invisible"></nav>
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const $navbarBurgers = Array.prototype.slice.call(

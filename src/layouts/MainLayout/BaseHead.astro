@@ -39,3 +39,13 @@ const {
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={new URL(image, Astro.url)} />
+<style is:global>
+  @font-face {
+    font-family: "kaiti-yima";
+    src: url("/yima/assets/kaiti-yima.woff2") format("woff2");
+  }
+
+  .zigenfont {
+    font-family: "kaiti-yima";
+  }
+</style>

@@ -3,19 +3,18 @@
  * 主要的布局
  */
 import BaseHead from "./BaseHead.astro";
-import Footer from "./BaseHead.astro";
+import Footer from "./Footer.astro";
 import Header from "./Header.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "@config";
 ---
-
 <!DOCTYPE html>
 <html lang="zh-hans-CN">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
   </head>
   <body>
-    <Header title="逸码 V20" base="/V20"/>
-    <main class='container is-max-desktop p-4'>
+    <Header title="逸码 V20" base="/V20" />
+    <main class="container is-max-desktop p-4 content">
       <slot />
     </main>
     <Footer title={SITE_TITLE} description={SITE_DESCRIPTION} />
