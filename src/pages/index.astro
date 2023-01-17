@@ -6,3 +6,12 @@ import MainLayout from "@l/MainLayout/main.astro";
 <MainLayout>
   <Intro />
 </MainLayout>
+<style is:global>
+  table {
+    -webkit-overflow-scrolling: touch;
+    overflow: auto;
+    overflow-y: hidden;
+    max-width: 100%;
+    table-layout:fixed;
+  }
+</style>
