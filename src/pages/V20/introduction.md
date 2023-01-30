@@ -64,7 +64,7 @@ heroImage: "/yi-cursive.svg"
 
 1. **从上到下**：一个字从上到下拆分部件。
 **释义**：这里定义的是所取字根在字中所处的位置。
-**示例**：“算”拆分为“<span class="zigenfont">𥫗目廾</span>”。
+**示例**：“算”拆分为“<span class="zigenfont">⺮目廾</span>”。
 2. **从左到右**：一个字从左到右拆分部件。
 **释义**：这里定义的是所取字根在字中所处的位置
 **示例**：“作”拆分为“<span class="zigenfont">亻乍</span>”。
