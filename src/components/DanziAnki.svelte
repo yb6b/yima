@@ -77,7 +77,7 @@
               class:is-invisible={isCorrect && !isFirstLearn}
             >
               拆分：
-              {#each item.info.spelling as comp, i}
+              {#each [...item.info.spelling] as comp, i}
                 <ruby class="zigenfont is-size-5">
                   {comp}
                   <rp>(</rp>

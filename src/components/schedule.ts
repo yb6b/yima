@@ -54,8 +54,9 @@ export class Schedule<T> {
     const firstRecord = this.record[0];
     const firstCount = ++firstRecord[0];
 
-    if (firstCount === 0) {
-      if (this.progress < maxIndex) this.progress++;
+
+    if (firstCount === 0 && this.progress === firstRecord[1]) {
+      this.progress++;
     }
 
     let step = 0;
@@ -72,23 +73,16 @@ export class Schedule<T> {
     this.record.copyWithin(0, 1, step + 1);
     this.record[step] = firstRecord;
 
-    this.failIndex = -1;
 
     this.saveLocal()
 
     return this.first();
   }
 
-  private failIndex = -1;
 
   /** 回答错误后 */
   public nextFail() {
     this.record[0][0] = -1;
-    if (this.failIndex !== this.record[0][1]) {
-      this.failIndex = this.record[0][1];
-      if (this.progress > 0)
-        this.progress--;
-    }
     this.saveLocal()
     return this.first();
   }
