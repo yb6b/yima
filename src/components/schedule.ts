@@ -7,11 +7,11 @@ function throttle(fn: Function, delay: number) {
   }
 }
 
-export class Schedule {
+export class Schedule<T> {
   /** 复习安排记录，每次学习完，把第一个项目移到末尾 */
   private record: [count: number, index: number][];
 
-  constructor(private items: any[], private name: string) {
+  constructor(private items: T[], private name: string) {
     const storedRecords = window.localStorage.getItem(
       `yima_${this.name}_records`
     );

@@ -93,13 +93,29 @@ heroImage: "/yi-cursive.svg"
 * 不限制码长。
 
 **示例**
-| 单字 | 编码  | 第一码           | 第二码             | 第三码               | 第四码                 | 第五码             |
-| ---- | ----- | :----------------: | :------------------: | :--------------------: | :----------------------: | ------------------ |
-| 作   | `jz`    | `j`<br>亻      | `z`<br>乍               |
-| 忽   | `jlru`  | `j`<br>勿      | `l`<br>心               | `r`<br>丶(心的第一笔)   | `u`<br>乚(心的第二笔） |
-| 持   | `glei`  | `g`<br>扌      | `l`<br>土               | `e`<br>一(剩余部分第一笔) | `i`<br>丨（剩余部分第二笔） |
-| 一   | `je`    | `j`<br>一（一画字根） | `e`<br>一（一字第一笔） |
-| 丫   | `wjiii` | `w`<br> 丷             | `j`<br>丨               | `i`<br>丨(重复最后一笔)| `i`<br>丨(重复最后一笔)     | `i`<br>(重复最后一笔) |
+* **作**：编码是 `jz`，分别指：
+  1. `j` <span class="zigenfont">亻</span>
+  2. `z` <span class="zigenfont">乍 </span>
+* **忽**：编码是 `jlru`，分别指：
+  1. `j` <span class="zigenfont">勿</span>
+  2. `l` <span class="zigenfont">心</span>
+  3. `r` <span class="zigenfont">丶</span>（心的第一笔）
+  4. `u` <span class="zigenfont">乚</span>（心的第二笔）
+* **持**：编码是 `glei`，分别指：
+  1. `g` <span class="zigenfont">扌</span>
+  2. `l` <span class="zigenfont">土</span>
+  3. `e` <span class="zigenfont">一</span>（剩余部分第一笔）
+  4. `i` <span class="zigenfont">丨</span>（剩余部分第二笔）
+* **一**：编码是 `je`，分别指：
+  1. `j` <span class="zigenfont">一</span> （一画字根）
+  2. `e` <span class="zigenfont">一</span> （一字第一笔）
+* **丫**：编码是 `wjiii`，分别指：
+  1. `w` <span class="zigenfont">丷</span>
+  2. `j` <span class="zigenfont">丨</span>
+  3. `i` <span class="zigenfont">丨</span>（重复最后一笔）
+  4. `i` <span class="zigenfont">丨</span>（重复最后一笔）
+  5. `i` <span class="zigenfont">丨</span>（重复最后一笔）
+
 ### 2.3 简码规则
 - 简码设计规则：依据字频。
 - 出简不出全：当一个字可以使用简码无重码时则不输入再继续输入剩余部件编码。
