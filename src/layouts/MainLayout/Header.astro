@@ -17,7 +17,7 @@ export interface Props {
   }[];
 }
 
-const { title, headerItems } = Astro.props;
+const { title, headerItems,base } = Astro.props;
 ---
 
 <nav
@@ -26,17 +26,19 @@ const { title, headerItems } = Astro.props;
   aria-label="main navigation"
 >
   <div class="navbar-brand">
-    <a class="navbar-item" href="/yima">
+    <a class="navbar-item" href="/yima/">
       <img src="/yima/assets/yi-cursive.svg" alt="逸码图标" height="28" />
-      <b class="ml-3" set:text={title} />
     </a>
-
+    <a href={'/yima'+base} class="navbar-item">
+      <b set:text={title}></b>
+    </a>
     <a
+      id="navmore"
       role="button"
       class="navbar-burger"
       aria-label="menu"
       aria-expanded="false"
-      data-target="navbarBasicExample"
+      data-target="navbasic"
     >
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
@@ -44,7 +46,7 @@ const { title, headerItems } = Astro.props;
     </a>
   </div>
 
-  <div id="navbarBasicExample" class="navbar-menu">
+  <div id="navbasic" class="navbar-menu">
     <div class="navbar-start">
       {
         headerItems.map((item) =>
@@ -77,12 +79,17 @@ const { title, headerItems } = Astro.props;
             target="_blank"
             class="navbar-item"
           >
-            <span class="icon"><img src={QqLogo} alt="QQ图标"/></span>
+            <span class="icon"><img src={QqLogo} alt="QQ图标" /></span>
             <span>加入QQ群</span>
           </a>
           <a href="http://yima.ysepan.com/" target="_blank" class="navbar-item">
             <span class="icon"
-              ><img src={YsepanLogo} height="16" width="16" alt="永硕网盘图标"/></span
+              ><img
+                src={YsepanLogo}
+                height="16"
+                width="16"
+                alt="永硕网盘图标"
+              /></span
             >
             <span>访问网盘</span>
           </a>
@@ -100,20 +107,12 @@ const { title, headerItems } = Astro.props;
   </div>
 </nav>
 <nav class="navbar is-invisible"></nav>
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const $navbarBurgers = Array.prototype.slice.call(
-      document.querySelectorAll(".navbar-burger"),
-      0
-    );
 
-    $navbarBurgers.forEach((el) => {
-      el.addEventListener("click", () => {
-        const target = el.dataset.target;
-        const $target = document.getElementById(target);
-        el.classList.toggle("is-active");
-        $target.classList.toggle("is-active");
-      });
-    });
+<script defer>
+  const navmore_ele = document.getElementById("navmore");
+  const navbasic_ele = document.getElementById("navbasic");
+  navmore_ele.addEventListener("click", () => {
+    navbasic_ele.classList.toggle("is-active");
+    navmore_ele.classList.toggle("is-active");
   });
 </script>

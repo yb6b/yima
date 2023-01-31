@@ -20,12 +20,11 @@ const {
   </head>
   <body>
     <Header title="逸码 V20" base="/V20" headerItems={[
-      {label:"首页",url:"/yima"},
-      {label:"文档",url:"/yima"},
       {label:"训练",url:"/yima/V20/zigen",chidren:[
         {label:"字根训练",url:"/yima/V20/zigen"},
         {label:"单字训练",url:"/yima/V20/danzi"},
       ]},
+      {label:"查询",url:"/yima/V20/search"},
       ]}/>
     <main class="container is-max-desktop p-4 content">
       <slot />
