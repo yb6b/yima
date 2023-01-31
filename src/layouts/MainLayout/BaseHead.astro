@@ -2,7 +2,6 @@
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
 //import "@s/global.css";
-import "bulma/css/bulma.min.css";
 
 export interface Props {
   title: string;
@@ -39,6 +38,7 @@ const {
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={new URL(image, Astro.url)} />
+<link rel="stylesheet" href="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-25-y/bulma/0.9.3/css/bulma.min.css">
 <style is:global>
   @font-face {
     font-family: "kaiti-yima";

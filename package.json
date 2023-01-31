@@ -11,14 +11,13 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/prefetch": "^0.1.1",
+    "@astrojs/prefetch": "^0.1.2",
     "@astrojs/rss": "^2.1.0",
-    "@astrojs/sitemap": "^1.0.0",
-    "@astrojs/svelte": "^2.0.0",
-    "astro": "^2.0.2",
+    "@astrojs/sitemap": "^1.0.1",
+    "@astrojs/svelte": "^2.0.1",
+    "astro": "^2.0.4",
     "astro-html-minifier": "^0.4.0",
-    "astro-purgecss": "^2.0.0",
     "bulma": "^0.9.4",
-    "svelte": "^3.54.0"
+    "svelte": "^3.55.1"
   }
 }

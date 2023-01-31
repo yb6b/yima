@@ -97,7 +97,7 @@
           style="max-width: 9rem;"
           type="text"
           autocomplete="none"
-          placeholder="输入字根键"
+          placeholder="输入编码"
           autofocus="autofocus"
         />
       </div>
