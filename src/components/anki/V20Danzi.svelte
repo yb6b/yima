@@ -1,5 +1,5 @@
 <script>
-  import ZingenAnki from "./DanziAnki.svelte";
+  import ZingenAnki from "./Danzi.svelte";
 
   async function getDataJson(url) {
     const d = await fetch(url);
@@ -27,7 +27,7 @@
 </script>
 
 {#await Data}
-  <div class="title has-text-grey has-text-centered is-2 my-6">
+  <div class="title has-text-grey has-text-centered is-4 my-6">
     正在加载数据……
   </div>
 {:then DATA}

@@ -1,5 +1,5 @@
 <script>
-  import ZingenAnki from "./ZingenAnki.svelte";
+  import ZingenAnki from "./Zingen.svelte";
 
   async function getDataJson(url) {
     const d = await fetch(url);

@@ -11,6 +11,7 @@
       "@p/*":["src/pages/*"],
       "@l/*":["src/layouts/*"],
       "@s/*":["src/styles/*"],
+      "@ct/*":["src/content/*"],
       "@config":["src/config.js"]
     }
   }
