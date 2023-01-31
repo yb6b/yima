@@ -31,5 +31,5 @@
     正在加载数据……
   </div>
 {:then DATA}
-  <ZingenAnki cards={DATA} name="V20zigen" />
+  <ZingenAnki cards={DATA} name="V20danzi" />
 {/await}

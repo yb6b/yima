@@ -86,7 +86,8 @@ export class Schedule<T> {
     this.record[0][0] = -1;
     if (this.failIndex !== this.record[0][1]) {
       this.failIndex = this.record[0][1];
-      this.progress--;
+      if (this.progress > 0)
+        this.progress--;
     }
     this.saveLocal()
     return this.first();

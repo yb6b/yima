@@ -10,12 +10,11 @@
   export let name;
 
   let thisSchedule;
-  let item = { zi: "", code: "", info: "" };
+  let item = { zi: "", code: "", info: { spelling: "", py: "" } };
   let progress = 0;
   let isFirstLearn = true;
   let isCorrect = true;
-  /** 小码元 */
-  const fiveStrokes = new Set("⼀⼂⺂⼁⼃");
+
   const userKeys = writable("");
 
   onMount(() => {
@@ -26,14 +25,13 @@
     progress = thisSchedule.progress;
 
     userKeys.subscribe((v) => {
-      if (v === "") return;
-      checkForNextItem(v[0]);
+      if (v.length < item.code.length) return;
+      checkForNextItem(v);
       userKeys.set("");
     });
   });
 
   function checkForNextItem(answer) {
-    if (answer.length !== 1) return;
     let next;
     if (answer === item.code) {
       next = thisSchedule.nextSuccess();
@@ -61,20 +59,35 @@
       <div class="column">
         <div class="columns is-mobile" style="min-height: 6rem;">
           <div
-            class="column m-auto title is-size-1 pt-4 zigenfont "
+            class="column m-auto is-size-1 pt-4 kaitifont"
             class:has-text-info={isCorrect}
           >
-            {item.zi}
+            <ruby>
+              {item.zi}<rp>(</rp><rt class="is-family-sans-serif is-size-6"
+                >{item.info.py}</rt
+              ><rp>)</rp></ruby
+            >
           </div>
           <div class="column  m-auto has-text-left">
-            {#if fiveStrokes.has(item.zi)}
-              <div class="has-text-dark-info mb-1">小码元的五个笔画键</div>
-            {:else}
-              <div class="has-text-dark-info mb-1">相关汉字：</div>
-              <div class="has-text-grey is-size-7" style="letter-spacing: 1px;">
-                {item.info}
-              </div>
-            {/if}
+            <div class="has-text-dark-info mb-1">
+              编码长度：<span class="has-text-info">{item.code.length}</span>
+            </div>
+            <div
+              class="has-text-dark-info"
+              class:is-invisible={isCorrect && !isFirstLearn}
+            >
+              拆分：
+              {#each item.info.spelling as comp, i}
+                <ruby class="zigenfont is-size-5">
+                  {comp}
+                  <rp>(</rp>
+                  <rt class="is-family-code is-size-5 has-text-info"
+                    >{item.code[i]}</rt
+                  >
+                  <rp>)</rp>
+                </ruby>
+              {/each}
+            </div>
           </div>
         </div>
         <input
@@ -87,17 +100,15 @@
           placeholder="输入字根键"
           autofocus="autofocus"
         />
-
-        <div
-          class="has-text-grey-dark pt-4"
-          class:is-invisible={!isFirstLearn && isCorrect}
-        >
-          答案是 <span class="is-family-code has-text-info has-text-weight-bold"
-            >{item.code}</span
-          >
-          <div class="is-invisible is-danger" />
-        </div>
       </div>
     </div>
   </div>
 </div>
+
+<div class="is-invisible is-danger" />
+
+<style>
+  .kaitifont {
+    font-family: "kaiti", "楷体", system-ui;
+  }
+</style>
