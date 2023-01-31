@@ -59,7 +59,8 @@
       <div class="column">
         <div class="columns is-mobile" style="min-height: 6rem;">
           <div
-            class="column m-auto is-size-1 pt-4 kaitifont"
+            class="column m-auto is-size-1 pt-4"
+            style="font-family: 'kaiti', '楷体', system-ui;"
             class:has-text-info={isCorrect}
           >
             <ruby>
@@ -104,11 +105,3 @@
     </div>
   </div>
 </div>
-
-<div class="is-invisible is-danger" />
-
-<style>
-  .kaitifont {
-    font-family: "kaiti", "楷体", system-ui;
-  }
-</style>

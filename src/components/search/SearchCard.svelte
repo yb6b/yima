@@ -15,7 +15,9 @@
   <div class="notification has-text-left">
     <div class="has-text-centered mb-3">
       <ruby class="is-size-3"
-        ><b class="kaitifont has-text-dark">{text}</b>
+        ><b class="has-text-dark"
+        style="font-family: 'kaiti', '楷体', system-ui;"
+        >{text}</b>
         <rp>〔</rp>
         <rt class="has-text-grey">{pinyin}</rt>
         <rp>〕</rp>
@@ -74,9 +76,3 @@
     </div>
   </div>
 </div>
-
-<style>
-  .kaitifont {
-    font-family: "kaiti", "楷体", system-ui;
-  }
-</style>
