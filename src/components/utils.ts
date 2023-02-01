@@ -23,6 +23,9 @@ export function scanTsv(content: string, foreachFn: (line: string[]) => void) {
         foreachFn(line)
         position = returnIndex + 1
     }
+    if (position < content.length - 1) {
+        foreachFn(content.substring(position).split('\t'))
+    }
 }
 
 export async function getDataText(url: string) {
