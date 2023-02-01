@@ -10,7 +10,7 @@
   export let name;
 
   let thisSchedule;
-  let item = { zi: "", code: "", info: { spelling: "", py: "" } };
+  let item = { zi: "", code: "", info: { spelling: "" } };
   let progress = 0;
   let isFirstLearn = true;
   let isCorrect = true;
@@ -62,12 +62,7 @@
             class="column m-auto is-size-1 pt-4"
             style="font-family: 'kaiti', '楷体', system-ui;"
             class:has-text-info={isCorrect}
-          >
-            <ruby>
-              {item.zi}<rp>(</rp><rt class="is-family-sans-serif is-size-6"
-                >{item.info.py}</rt
-              ><rp>)</rp></ruby
-            >
+          >{item.zi}
           </div>
           <div class="column  m-auto has-text-left">
             <div class="has-text-dark-info mb-1">
