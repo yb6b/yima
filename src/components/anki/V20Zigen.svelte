@@ -1,16 +1,6 @@
 <script>
   import ZingenAnki from "./Zingen.svelte";
-  import { readTsv } from "@c/utils";
-
-  async function getDataText(url) {
-    const d = await fetch(url);
-    const j = await d.text();
-    if (d.ok) {
-      return j;
-    } else {
-      throw new Error(j);
-    }
-  }
+  import { readTsv,getDataText } from "@c/utils";
 
   async function getData(url) {
     const raw_danzi = await getDataText(url);

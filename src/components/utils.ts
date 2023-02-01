@@ -23,3 +23,15 @@ export function readTsvAsMap(content: string) {
     }
     return result
 }
+
+export async function getDataText(url) {
+    const d = await fetch(url);
+    const j = await d.text();
+    if (d.ok) {
+        return j;
+    } else {
+        throw new Error(j);
+    }
+}
+
+export const GlobalCache: Map<string, Map<string, unknown>> = new Map()

@@ -1,18 +1,8 @@
 <script>
   import ZingenAnki from "./Danzi.svelte";
-  import { readTsv, readTsvAsMap } from "@c/utils";
+  import { readTsv, readTsvAsMap,getDataText } from "@c/utils";
   import { onMount } from "svelte";
   import {writable} from 'svelte/store';
-
-  async function getDataText(url) {
-    const d = await fetch(url);
-    const j = await d.text();
-    if (d.ok) {
-      return j;
-    } else {
-      throw new Error(j);
-    }
-  }
 
   async function getData(url) {
     const raw_comp_map = await getDataText("/yima/V20/comp-map.tsv");
