@@ -1,6 +1,6 @@
 <script>
   import ZingenAnki from "./Danzi.svelte";
-  import { readTsv, readTsvAsMap,getDataText } from "@c/utils";
+  import { readTsvAsArray, readTsvAsMap,getDataText } from "@c/utils";
   import { onMount } from "svelte";
   import {writable} from 'svelte/store';
 
@@ -9,7 +9,7 @@
     const comp_map = readTsvAsMap(raw_comp_map);
 
     const raw_danzi = await getDataText(url);
-    return readTsv(raw_danzi, (l) => ({
+    return readTsvAsArray(raw_danzi, (l) => ({
       zi: l[0],
       code: [...l[1]].map((c) => comp_map.get(c)).join(""),
       info: { spelling: l[1] },

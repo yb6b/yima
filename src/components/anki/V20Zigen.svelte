@@ -1,10 +1,10 @@
 <script>
   import ZingenAnki from "./Zingen.svelte";
-  import { readTsv,getDataText } from "@c/utils";
+  import { readTsvAsArray,getDataText } from "@c/utils";
 
   async function getData(url) {
     const raw_danzi = await getDataText(url);
-    return readTsv(raw_danzi, (l) => ({
+    return readTsvAsArray(raw_danzi, (l) => ({
       zi: l[0],
       code: l[1],
       info: l[2],
