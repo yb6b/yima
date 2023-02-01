@@ -1,5 +1,5 @@
 <script>
-  import ZingenAnki from "./Zingen.svelte";
+  import ZingenAnki from "./Zigen.svelte";
   import { readTsvAsArray,getDataText } from "@c/utils";
 
   async function getData(url) {

@@ -9,6 +9,9 @@
   /** @type {string}*/
   export let name;
 
+  
+  const fiveStrokes = new Set("⼀⼂⺂⼁⼃");
+
   let thisSchedule;
   let item = { zi: "", code: "", info: { spelling: "" } };
   let progress = 0;
@@ -66,7 +69,7 @@
           </div>
           <div class="column  m-auto has-text-left">
             <div class="has-text-dark-info mb-1">
-              编码长度：<span class="has-text-info">{item.code.length}</span>
+              编长：<span class="has-text-info">{item.code.length}</span>
             </div>
             <div
               class="has-text-dark-info"
@@ -74,7 +77,7 @@
             >
               拆分：
               {#each [...item.info.spelling] as comp, i}
-                <ruby class="zigenfont is-size-5">
+                <ruby class="zigenfont is-size-5" class:round-bg={fiveStrokes.has(comp)}>
                   {comp}
                   <rp>(</rp>
                   <rt class="is-family-code is-size-5 has-text-info"

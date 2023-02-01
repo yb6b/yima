@@ -2,6 +2,8 @@
   import SearchWebs from "./SearchWebs.svelte";
   export let someHanzi;
 
+  
+  const fiveStrokes = new Set("⼀⼂⺂⼁⼃");
   /** @type {Map<string, {code:string,pinyin:string,spelling:string}>}*/
   export let Data;
 
@@ -32,11 +34,11 @@
               <td>
                 <div>
                   {#each [...Data.get(zi).spelling] as comp, i}
-                    <ruby class="zigenfont is-size-5">
+                    <ruby class="zigenfont is-size-5" class:round-bg={fiveStrokes.has(comp)} >
                       {comp}
                       <rp>(</rp>
                       <rt
-                        class="is-family-code is-size-6 has-text-info has-text-weight-bold"
+                        class="is-family-code is-size-6 has-text-info has-text-weight-bold is-uppercase" 
                         >{Data.get(zi).code[i]}</rt
                       >
                       <rp>)</rp>

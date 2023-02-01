@@ -1,8 +1,8 @@
 <script>
   import ZingenAnki from "./Danzi.svelte";
-  import { readTsvAsArray, readTsvAsMap,getDataText } from "@c/utils";
+  import { readTsvAsArray, readTsvAsMap, getDataText } from "@c/utils";
   import { onMount } from "svelte";
-  import {writable} from 'svelte/store';
+  import { writable } from "svelte/store";
 
   async function getData(url) {
     const raw_comp_map = await getDataText("/yima/V20/comp-map.tsv");
@@ -19,9 +19,11 @@
   let chosenArticle = writable("zi500");
 
   onMount(() => {
-    chosenArticle.set(localStorage.getItem('yima_V20danzi_chosen'))
-    chosenArticle.subscribe(v=>localStorage.setItem('yima_V20danzi_chosen',v))
-  })
+    chosenArticle.set(localStorage.getItem("yima_V20danzi_chosen"));
+    chosenArticle.subscribe((v) =>
+      localStorage.setItem("yima_V20danzi_chosen", v)
+    );
+  });
 
   const choices = [
     ["zi500", "常用汉字前500"],
@@ -36,14 +38,13 @@
     >选择训练范围
     <div class="control pt-2">
       <div class="select is-small">
-      <select
-        bind:value={$chosenArticle}
-      >
-        {#each choices as c}
-          <option value={c[0]}>{c[1]}</option>
-        {/each}
-      </select>
-    </div></div>
+        <select bind:value={$chosenArticle}>
+          {#each choices as c}
+            <option value={c[0]}>{c[1]}</option>
+          {/each}
+        </select>
+      </div>
+    </div>
   </label>
 </div>
 {#await Data}
