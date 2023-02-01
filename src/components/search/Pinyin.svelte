@@ -10,13 +10,14 @@
     }
     return GlobalCache.get(dataUrl);
   }
-
+  
   export let userInput;
 
   /** @type {Map<string, {code:string,pinyin:string,spelling:string}>}*/
   export let Data;
 
   let PinyinMap = getData();
+
 </script>
 
 {#await PinyinMap}

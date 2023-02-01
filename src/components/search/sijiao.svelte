@@ -1,6 +1,5 @@
 <script>
-  import { readTsv, getDataText, GlobalCache } from "@c/utils";
-  import { dataset_dev } from "svelte/internal";
+  import { scanTsv, getDataText, GlobalCache } from "@c/utils";
   import ShowTable from "./ShowTable.svelte";
 
   async function getData() {
@@ -9,7 +8,7 @@
       const raw = await getDataText(dataUrl);
 
       const MapHas4Numbers = new Map();
-      readTsv(raw, (l) => {
+      scanTsv(raw, (l) => {
         MapHas4Numbers.set(l[0], l[1]);
         const Num4 = l[0].substring(0, 4);
         const old = MapHas4Numbers.get(Num4);

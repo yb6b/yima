@@ -4,11 +4,23 @@
   import Pinyin from "./Pinyin.svelte";
   import Bihua from "./Bihua.svelte";
   import SearchHelp from "./SearchHelp.svelte";
+  import { throttle } from "@c/utils";
 
   /** @type {Map<string, {code:string,pinyin:string,spelling:string}>}*/
   export let Data;
+  let rawInput = "";
   let userInput = "";
+
+  const changeInput = throttle((rawInput) => {
+    userInput = rawInput;
+  }, 200);
+
+  $: {
+    changeInput(rawInput);
+  }
+
   let needHelp = false;
+
 </script>
 
 <div class="columns is-centered has-text-centered">
@@ -16,7 +28,7 @@
     <div class="field">
       <div class="control">
         <input
-          bind:value={userInput}
+          bind:value={rawInput}
           class="input is-primary is-rounded"
           type="text"
           autocomplete="none"
@@ -25,7 +37,12 @@
         />
       </div>
       <div class="help">
-        <div class="has-text-danger has-text-left" class:is-hidden={!/^[1-5]{8,}$/.test(userInput)} >笔画查询用前 6 笔和末笔</div>
+        <div
+          class="has-text-danger has-text-left"
+          class:is-hidden={!/^[1-5]{8,}$/.test(userInput)}
+        >
+          笔画查询用前 6 笔和末笔
+        </div>
         <SearchHelp />
       </div>
     </div>
