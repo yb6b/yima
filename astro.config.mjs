@@ -6,8 +6,8 @@ import htmlMinifier from "astro-html-minifier";
 import svelte from "@astrojs/svelte";
 
 export default defineConfig({
-  site: siteConfig.SITE_SITE,
-  base: siteConfig.SITE_BASE,
+  site: 'https://yb6b.github.io',
+  base: '/yima',
   integrations: [sitemap({
     i18n: {
       defaultLocale: 'zh-CN'

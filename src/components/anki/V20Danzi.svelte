@@ -5,7 +5,7 @@
   import { writable } from "svelte/store";
 
   async function getData(url) {
-    const raw_comp_map = await getDataText("/yima/V20/comp-map.tsv");
+    const raw_comp_map = await getDataText("V20/comp-map.tsv");
     const comp_map = readTsvAsMap(raw_comp_map);
 
     const raw_danzi = await getDataText(url);
@@ -30,7 +30,7 @@
     ["zi1000", "常用汉字500~1000"],
     ["zi1500", "常用汉字500~1500"],
   ];
-  $: Data = getData(`/yima/V20/${$chosenArticle}.tsv`);
+  $: Data = getData(`V20/${$chosenArticle}.tsv`);
 </script>
 
 <div class="field columns is-centered pl-6 py-2">

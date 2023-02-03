@@ -11,7 +11,7 @@
     }));
   }
 
-  let getZIGEN = getData("/yima/V20/zigen.tsv");
+  let getZIGEN = getData("V20/zigen.tsv");
 </script>
 
 {#await getZIGEN}

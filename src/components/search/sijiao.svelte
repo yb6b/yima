@@ -3,7 +3,7 @@
   import ShowTable from "./ShowTable.svelte";
 
   async function getData() {
-    const dataUrl = "/yima/V20/sijiao.tsv";
+    const dataUrl = "V20/sijiao.tsv";
     if (!GlobalCache.has(dataUrl)) {
       const raw = await getDataText(dataUrl);
 

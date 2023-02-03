@@ -15,14 +15,18 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const {
   title,
   description,
-  image = "/yima/assets/yi-cursive.svg",
+  image = import.meta.env.BASE_URL + "assets/yi-cursive.svg",
 } = Astro.props;
 ---
 
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<link rel="icon" type="image/svg+xml" href="/yima/assets/yi-cursive.svg" />
+<link
+  rel="icon"
+  type="image/svg+xml"
+  href={import.meta.env.BASE_URL + "assets/yi-cursive.svg"}
+/>
 <meta name="generator" content={Astro.generator} />
 
 <!-- Canonical URL -->
@@ -39,7 +43,10 @@ const {
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={new URL(image, Astro.url)} />
-<link rel="stylesheet" href="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-25-y/bulma/0.9.3/css/bulma.min.css">
+<link
+  rel="stylesheet"
+  href="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-25-y/bulma/0.9.3/css/bulma.min.css"
+/>
 <style is:global>
   @font-face {
     font-family: "kaiti-yima";
@@ -49,8 +56,8 @@ const {
   .zigenfont {
     font-family: "kaiti-yima", "kaiti", "楷体", system-ui;
   }
-  
-  .round-bg{
-    background-image:radial-gradient( khaki 50%, transparent 0);
+
+  .round-bg {
+    background-image: radial-gradient(khaki 50%, transparent 0);
   }
 </style>

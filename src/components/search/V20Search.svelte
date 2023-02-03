@@ -1,10 +1,9 @@
 <script>
-  import { setContext } from "svelte";
   import Search from "./search.svelte";
   import { scanTsv, readTsvAsMap, getDataText } from "@c/utils";
 
   async function getData(url) {
-    const rawCompTsvContent = await getDataText("/yima/V20/comp-map.tsv");
+    const rawCompTsvContent = await getDataText("V20/comp-map.tsv");
     const comp_map = readTsvAsMap(rawCompTsvContent);
 
     const rawDanziContent = await getDataText(url);
@@ -19,7 +18,7 @@
     return danziMap;
   }
 
-  let Data = getData("/yima/V20/all-zi.tsv");
+  let Data = getData("V20/all-zi.tsv");
 </script>
 
 {#await Data}

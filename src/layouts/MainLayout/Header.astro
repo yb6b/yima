@@ -7,6 +7,7 @@ export interface Props {
   title: string;
   /** 路由前缀 */
   base: string;
+
   headerItems: {
     label: string;
     url: string;
@@ -17,7 +18,7 @@ export interface Props {
   }[];
 }
 
-const { title, headerItems,base } = Astro.props;
+const { title, headerItems, base } = Astro.props;
 ---
 
 <nav
@@ -26,11 +27,15 @@ const { title, headerItems,base } = Astro.props;
   aria-label="main navigation"
 >
   <div class="navbar-brand">
-    <a class="navbar-item" href="/yima/">
-      <img src="/yima/assets/yi-cursive.svg" alt="逸码图标" height="28" />
+    <a class="navbar-item" href={import.meta.env.BASE_URL}>
+      <img
+        src={import.meta.env.BASE_URL + "assets/yi-cursive.svg"}
+        alt="逸码图标"
+        height="28"
+      />
     </a>
-    <a href={'/yima'+base} class="navbar-item">
-      <b set:text={title}></b>
+    <a href={base} class="navbar-item">
+      <b set:text={title} />
     </a>
     <a
       id="navmore"

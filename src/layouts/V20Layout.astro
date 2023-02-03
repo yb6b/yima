@@ -2,33 +2,39 @@
 import BaseHead from "./MainLayout/BaseHead.astro";
 import Footer from "./MainLayout/Footer.astro";
 import Header from "./MainLayout/Header.astro";
-import {SITE_DESCRIPTION } from "@config";
+import { SITE_DESCRIPTION } from "@config";
 
 export interface Props {
   title: string;
 }
 
-const {
-  title,
-} = Astro.props;
-
+const { title } = Astro.props;
 ---
+
 <!DOCTYPE html>
 <html lang="zh-hans-CN">
   <head>
     <BaseHead title={title} description={SITE_DESCRIPTION} />
   </head>
   <body>
-    <Header title="逸码 V20" base="/V20" headerItems={[
-      {label:"训练",url:"/yima/V20/zigen",chidren:[
-        {label:"字根训练",url:"/yima/V20/zigen"},
-        {label:"单字训练",url:"/yima/V20/danzi"},
-      ]},
-      {label:"查询",url:"/yima/V20/search"},
-      ]}/>
+    <Header
+      title="逸码 V20"
+      base={import.meta.env.BASE_URL + "V20"}
+      headerItems={[
+        {
+          label: "训练",
+          url: import.meta.env.BASE_URL + "V20/zigen",
+          chidren: [
+            { label: "字根训练", url: import.meta.env.BASE_URL + "V20/zigen" },
+            { label: "单字训练", url: import.meta.env.BASE_URL + "V20/danzi" },
+          ],
+        },
+        { label: "查询", url: import.meta.env.BASE_URL + "V20/search" },
+      ]}
+    />
     <main class="container is-max-desktop p-4 content">
       <slot />
     </main>
-    <Footer/>
+    <Footer />
   </body>
 </html>

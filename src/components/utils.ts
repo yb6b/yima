@@ -29,7 +29,7 @@ export function scanTsv(content: string, foreachFn: (line: string[]) => void) {
 }
 
 export async function getDataText(url: string) {
-    const d = await fetch(url);
+    const d = await fetch(import.meta.env.BASE_URL + url);
     const j = await d.text();
     if (d.ok) {
         return j;
