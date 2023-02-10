@@ -54,28 +54,24 @@ export class Schedule<T> {
     const firstRecord = this.record[0];
     const firstCount = ++firstRecord[0];
 
-
     if (firstCount === 0 && this.progress === firstRecord[1]) {
       this.progress++;
     }
 
-    let step = 0;
-
-    if (firstCount > 7) {
+    let step = 0;    
+    const moveSteps = [2, 4, 8, 12, 20, 30, 60, 100];
+    if (firstCount > moveSteps.length - 1) {
       firstRecord[0] = 8;
       step = maxIndex;
     } else {
-      const moveSteps = [2, 4, 8, 12, 20, 30, 60, 100];
       step = moveSteps[firstCount];
       if (step > maxIndex) step = maxIndex;
     }
 
     this.record.copyWithin(0, 1, step + 1);
     this.record[step] = firstRecord;
-
-
+    
     this.saveLocal()
-
     return this.first();
   }
 
