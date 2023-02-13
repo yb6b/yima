@@ -19,7 +19,12 @@
   let chosenArticle = writable("zi500");
 
   onMount(() => {
-    chosenArticle.set(localStorage.getItem("yima_V20danzi_chosen"));
+    const oldChosen = localStorage.getItem("yima_V20danzi_chosen");
+    if (oldChosen) {
+      chosenArticle.set(oldChosen);
+    } else {
+      chosenArticle.set("zi500");
+    }
     chosenArticle.subscribe((v) =>
       localStorage.setItem("yima_V20danzi_chosen", v)
     );
