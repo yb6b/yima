@@ -28,7 +28,9 @@ export function scanTsv(content: string, foreachFn: (line: string[]) => void) {
     }
 }
 
+/** 获取绝对路径下的public目录里的文件 */
 export async function getDataText(url: string) {
+    if (url.startsWith('/')) url = url.substring(1)
     const d = await fetch(import.meta.env.BASE_URL + url);
     const j = await d.text();
     if (d.ok) {
