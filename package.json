@@ -1,5 +1,5 @@
 {
-  "name": "@example/blog",
+  "name": "yima website",
   "type": "module",
   "version": "0.0.1",
   "private": true,
@@ -11,13 +11,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/prefetch": "^0.1.2",
-    "@astrojs/rss": "^2.1.0",
-    "@astrojs/sitemap": "^1.0.1",
-    "@astrojs/svelte": "^2.0.1",
-    "astro": "^2.0.4",
-    "astro-html-minifier": "^0.4.0",
+    "@astrojs/prefetch": "^0.3.0",
+    "@astrojs/sitemap": "^2.0.1",
+    "@astrojs/solid-js": "^2.2.0",
+    "astro": "^2.10.7",
     "bulma": "^0.9.4",
-    "svelte": "^3.55.1"
+    "solid-js": "^1.4.3"
   }
 }
