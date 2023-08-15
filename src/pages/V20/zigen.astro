@@ -3,6 +3,6 @@ import ZigenAnki from "@c/anki/V20Zigen.svelte";
 import MainLayout from "@l/V20Layout.astro";
 ---
 
-<MainLayout title="字根训练 - 逸码 V20">
+<MainLayout title="字根训练 - 逸码 V20" thisHref={import.meta.env.BASE_URL + "V20/zigen"}>
   <ZigenAnki client:load />
 </MainLayout>

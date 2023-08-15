@@ -15,7 +15,7 @@
     {title}
   </div>
   <div class="column">
-    <div class="table-container">
+    <div class="table-container" >
       <table class="table is-striped is-fullwidth">
         <thead>
           <tr>

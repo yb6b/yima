@@ -1,38 +1,31 @@
 ---
 import BaseLayout from "@l/base/Layout.astro";
+import ContanctUs from "@l/base/navbar/ContactUs.astro";
+import IntroArticle from "@ct/intro.md";
+import V20Intro from "@ct/V20-intro.md";
 ---
 
 <BaseLayout title="逸码输入法" description="逸码输入法网站首页">
-  <section class="hero is-info is-large">
+  <section class="hero is-warning">
     <div class="hero-head">
       <nav class="navbar">
         <div class="container">
           <div class="navbar-brand">
-            <a class="navbar-item">
+            <a class="navbar-item bg-white" href={import.meta.env.BASE_URL}>
               <img
-                src={import.meta.env.BASE_URL + 'assets/yi-cursive.svg'}
+                src={import.meta.env.BASE_URL + "assets/yi-cursive.svg"}
                 alt="Logo"
               />
             </a>
-            <span class="navbar-burger" data-target="navbarMenuHeroB">
+            <span class="navbar-burger" id="navmore" data-target="navbasic">
               <span></span>
               <span></span>
               <span></span>
             </span>
           </div>
-          <div id="navbarMenuHeroB" class="navbar-menu">
+          <div id="navbasic" class="navbar-menu">
             <div class="navbar-end">
-              <a class="navbar-item is-active"> Home</a>
-              <a class="navbar-item"> Examples</a>
-              <a class="navbar-item"> Documentation</a>
-              <span class="navbar-item">
-                <a class="button is-info is-inverted">
-                  <span class="icon">
-                    <i class="fab fa-github"></i>
-                  </span>
-                  <span>Download</span>
-                </a>
-              </span>
+              <ContanctUs />
             </div>
           </div>
         </div>
@@ -42,44 +35,74 @@ import BaseLayout from "@l/base/Layout.astro";
     <div class="hero-body">
       <div class="container has-text-centered">
         <p class="title">逸码输入法</p>
-        <p class="subtitle">纯形二码顶</p>
+        <p class="subtitle has-text-grey">乱序纯形二码顶</p>
       </div>
     </div>
 
     <div class="hero-foot">
-      <nav class="tabs is-boxed is-fullwidth">
+      <nav class="tabs is-boxed is-centered">
         <div class="container">
-          <ul>
-            <li class="is-active">
-              <a>Overview</a>
+          <ul id="tabsel">
+            <li data-to="intro" class="is-active">
+              <a>介绍</a>
             </li>
-            <li>
-              <a>Modifiers</a>
+            <li data-to="v20">
+              <a>V20</a>
             </li>
-            <li>
-              <a>Grid</a>
+            <li id="vv9">
+              <a>VV9</a>
             </li>
-            <li>
-              <a>Elements</a>
+            <li id="vv4">
+              <a>VV4</a>
             </li>
-            <li>
-              <a>Components</a>
-            </li>
-            <li>
-              <a>Layout</a>
+            <li id="cy">
+              <a>晨逸</a>
             </li>
           </ul>
         </div>
       </nav>
     </div>
   </section>
+  <div id="atc" class="container is-max-desktop p-5 mt-2 content">
+    <article id="intro">
+      <IntroArticle />
+    </article>
+    <article id="v20" class="display-none">
+      <V20Intro />
+    </article>
+  </div>
 </BaseLayout>
 
 <script defer>
   const navmore_ele = document.getElementById("navmore");
   const navbasic_ele = document.getElementById("navbasic");
+
   navmore_ele.addEventListener("click", () => {
     navbasic_ele.classList.toggle("is-active");
     navmore_ele.classList.toggle("is-active");
   });
+
+  document.getElementById("tabsel").addEventListener("click", (e) => {
+    const t = e.target;
+    if (t.nodeName === "A") {
+      e.stopPropagation();
+      document
+        .querySelectorAll("#tabsel > li")
+        .forEach((e) => e.classList.remove("is-active"));
+
+      const tp = t.parentElement;
+      tp.classList.add("is-active");
+
+      document
+        .querySelectorAll("#atc article")
+        .forEach((e) => e.classList.add("display-none"));
+      const toId = tp.dataset.to;
+      document.getElementById(toId).classList.remove("display-none");
+    }
+  });
 </script>
+<style>
+  .display-none{
+    display: none;
+  }
+  </style>

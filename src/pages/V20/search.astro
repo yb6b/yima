@@ -3,6 +3,11 @@ import Search from "@c/search/V20Search.svelte";
 import Layout from "@l/V20Layout.astro";
 ---
 
-<Layout title="拆分查询 - 逸码 V20">
-  <Search client:load/>
+<Layout
+  title="拆分查询 - 逸码 V20"
+  thisHref={import.meta.env.BASE_URL + "V20/search"}
+>
+
+    <Search client:load />
+
 </Layout>

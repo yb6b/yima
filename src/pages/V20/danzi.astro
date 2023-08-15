@@ -3,6 +3,6 @@ import DanziAnki from "@c/anki/V20Danzi.svelte";
 import MainLayout from "@l/V20Layout.astro";
 ---
 
-<MainLayout title="单字训练 - 逸码 V20">
+<MainLayout title="单字训练 - 逸码 V20" thisHref={import.meta.env.BASE_URL+"V20/danzi"}>
   <DanziAnki client:load />
 </MainLayout>

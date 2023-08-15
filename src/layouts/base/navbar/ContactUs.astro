@@ -1,0 +1,38 @@
+---
+import QqLogo from "./assets/QQ.svg";
+import YsepanLogo from "./assets/ysepan.png";
+import githubLogo from "./assets/github.svg";
+---
+
+<div class="navbar-item has-dropdown is-hoverable">
+  <a class="navbar-link"> 联系我们</a>
+  <div class="navbar-dropdown">
+    <a
+      href="https://jq.qq.com/?_wv=1027&k=5V71KdOJ"
+      target="_blank"
+      class="navbar-item"
+    >
+      <span class="icon"><img src={QqLogo} alt="QQ图标" /></span>
+      <span>加入QQ群</span>
+    </a>
+    <a href="http://yima.ysepan.com/" target="_blank" class="navbar-item">
+      <span class="icon"
+        ><img
+          src={YsepanLogo}
+          height="16"
+          width="16"
+          alt="永硕网盘图标"
+        /></span
+      >
+      <span>访问网盘</span>
+    </a>
+    <a
+      href="https://github.com/lakent/yi/issues"
+      target="_blank"
+      class="navbar-item"
+    >
+      <span class="icon"><img src={githubLogo} alt="github图标" /></span>
+      <span>提交建议</span>
+    </a>
+  </div>
+</div>

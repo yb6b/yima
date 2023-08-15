@@ -1,41 +1,35 @@
 ---
-import BaseHead from "./base/BaseHead.astro";
-import Footer from "./base/Footer.astro";
-import Header from "./base/Header.astro";
-import { SITE_DESCRIPTION } from "@config";
+import BaseLayout from "./base/Layout.astro";
+import HeroNavBar from "./base/herobar/Common.astro";
 
 export interface Props {
   title: string;
+  thisHref: string;
 }
 
-const { title } = Astro.props;
+const { title, thisHref } = Astro.props;
+const description = "大字根、字根归类、优化常用字";
+const genLink = (label: string, relativeHref: string) => {
+  return {
+    label,
+    href: import.meta.env.BASE_URL + relativeHref,
+    isActive: thisHref !== import.meta.env.BASE_URL + relativeHref,
+  };
+};
 ---
 
-<!DOCTYPE html>
-<html lang="zh-hans-CN">
-  <head>
-    <BaseHead title={title} description={SITE_DESCRIPTION} />
-  </head>
-  <body>
-    <Header
-      title="逸码 V20"
-      base={import.meta.env.BASE_URL + "V20"}
-      headerItems={[
-        {
-          label: "训练",
-          url: import.meta.env.BASE_URL + "V20/zigen",
-          chidren: [
-            { label: "字根训练", url: import.meta.env.BASE_URL + "V20/zigen" },
-            { label: "单字训练", url: import.meta.env.BASE_URL + "V20/danzi" },
-          ],
-        },
-        { label: "查询", url: import.meta.env.BASE_URL + "V20/search" },
-      ]}
-    />
-
-    <main class="container is-max-desktop p-4 content">
-      <slot />
-    </main>
-    <Footer />
-  </body>
-</html>
+<BaseLayout title={title} description={description}>
+  <HeroNavBar
+    title={title}
+    subt={description}
+    link={[
+      genLink("说明书", "V20"),
+      genLink("字根练习", "V20/zigen"),
+      genLink("单字练习", "V20/danzi"),
+      genLink("反查", "V20/search"),
+    ]}
+  />
+  <div class="container is-max-desktop p-5 mt-2 content">
+    <slot />
+  </div>
+</BaseLayout>

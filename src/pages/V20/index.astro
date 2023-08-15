@@ -1,16 +1,8 @@
 ---
-import Intro from "@ct/V20-intro.md"
+import Intro from "@ct/V20-intro.md";
 import MainLayout from "@l/V20Layout.astro";
 ---
-<MainLayout title="逸码 V20">
+
+<MainLayout title="说明书 - 逸码 V20" thisHref={import.meta.env.BASE_URL + "V20"}>
   <Intro />
 </MainLayout>
-<style is:global>
-  table {
-    -webkit-overflow-scrolling: touch;
-    overflow: auto;
-    overflow-y: hidden;
-    max-width: 100%;
-    table-layout:fixed;
-  }
-</style>
