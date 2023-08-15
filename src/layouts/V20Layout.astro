@@ -1,7 +1,7 @@
 ---
-import BaseHead from "./MainLayout/BaseHead.astro";
-import Footer from "./MainLayout/Footer.astro";
-import Header from "./MainLayout/Header.astro";
+import BaseHead from "./base/BaseHead.astro";
+import Footer from "./base/Footer.astro";
+import Header from "./base/Header.astro";
 import { SITE_DESCRIPTION } from "@config";
 
 export interface Props {
@@ -32,6 +32,7 @@ const { title } = Astro.props;
         { label: "查询", url: import.meta.env.BASE_URL + "V20/search" },
       ]}
     />
+
     <main class="container is-max-desktop p-4 content">
       <slot />
     </main>

@@ -60,4 +60,18 @@ const {
   .round-bg {
     background-image: radial-gradient(khaki 50%, transparent 0);
   }
+
+  table {
+    -webkit-overflow-scrolling: touch;
+    overflow: auto;
+    overflow-y: hidden;
+    max-width: 100%;
+    table-layout:fixed;
+  }
+
+  /* Improve Page speed */
+  /* https://css-tricks.com/almanac/properties/c/content-visibility/ */
+  img {
+    content-visibility: auto;
+  }
 </style>
