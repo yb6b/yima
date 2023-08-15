@@ -1,32 +1,16 @@
 {
   "extends": "astro/tsconfigs/base",
   "isolatedModules": false,
-  "include": [
-    "src/**/*"
-  ],
+  "include": ["src/**/*"],
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@c/*": [
-        "src/components/*"
-      ],
-      "@p/*": [
-        "src/pages/*"
-      ],
-      "@l/*": [
-        "src/layouts/*"
-      ],
-      "@s/*": [
-        "src/styles/*"
-      ],
-      "@ct/*": [
-        "src/content/*"
-      ],
-      "@config": [
-        "src/config.js"
-      ]
-    },
-    "jsx": "preserve",
-    "jsxImportSource": "solid-js"
+      "@c/*": ["src/components/*"],
+      "@p/*": ["src/pages/*"],
+      "@l/*": ["src/layouts/*"],
+      "@s/*": ["src/styles/*"],
+      "@ct/*": ["src/content/*"],
+      "@config": ["src/config.js"]
+    }
   }
 }

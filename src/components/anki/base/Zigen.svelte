@@ -83,9 +83,9 @@
           class:is-danger={!isCorrect}
           style="max-width: 9rem;"
           type="text"
-          autocomplete="none"
+          autocomplete="off"
           placeholder="输入字根键"
-          autofocus="autofocus"
+          autofocus
         />
 
         <div

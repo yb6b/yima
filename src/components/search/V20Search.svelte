@@ -1,5 +1,5 @@
 <script>
-  import Search from "./search.svelte";
+  import Search from "./base/search.svelte";
   import { scanTsv, readTsvAsMap, getDataText } from "@c/utils";
 
   async function getData(url) {

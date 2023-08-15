@@ -1,5 +1,5 @@
 <script>
-  import ZingenAnki from "./Danzi.svelte";
+  import ZingenAnki from "./base/Danzi.svelte";
   import { readTsvAsArray, readTsvAsMap, getDataText } from "@c/utils";
   import { onMount } from "svelte";
   import { writable } from "svelte/store";
