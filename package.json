@@ -14,10 +14,8 @@
     "@astrojs/prefetch": "^0.3.0",
     "@astrojs/sitemap": "^2.0.1",
     "@astrojs/solid-js": "^2.2.0",
-    "@astrojs/svelte": "^3.1.0",
     "astro": "^2.10.7",
     "bulma": "^0.9.4",
-    "solid-js": "^1.4.3",
-    "svelte": "^4.0.0"
+    "solid-js": "^1.4.3"
   }
 }
