@@ -8,6 +8,10 @@ const absHref = import.meta.env.BASE_URL + href;
 ---
 
 <article class="message column m-4">
-  <div class="message-header"><a href={absHref}>逸码 {label}</a></div>
-  <div class="message-body"><slot /></div>
+  <a href={absHref} style="text-decoration: none;">
+    <div class="message-body">
+      <h2 class="title has-text-wide">逸码 {label}</h2>
+      <slot />
+    </div>
+  </a>
 </article>

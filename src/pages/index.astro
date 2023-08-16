@@ -1,17 +1,19 @@
 ---
 import BaseLayout from "@l/base/Layout.astro";
-import ContanctUs from "@l/base/navbar/ContactUs.astro";
-import IntroArticle from "@ct/intro.md";
-import V20Intro from "@ct/V20-intro.md";
 import IndexCard from "@c/IndexCard.astro";
 const baseurl = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout title="逸码输入法" description="逸码输入法网站首页">
-  <section class="hero is-medium is-danger">
-    <div class="hero-body">
-      <h1 class="title has-text-wide pb-4">逸码输入法</h1>
-      <h2 class="subtitle">乱序纯形二码顶功输入方案</h2>
+  <section class="hero is-medium ">
+    <div class="hero-body has-text-centered">
+      <figure class="image is-64x64 m-auto">
+      <img
+        src={import.meta.env.BASE_URL + "assets/yi-cursive.svg"}
+        alt="逸码图标"
+      /></figure>
+      <h1 class="title has-text-wide has-text-danger-dark mt-5">逸码输入法</h1>
+      <h2 class="subtitle has-text-grey-light ">乱序纯形二码顶功输入方案</h2>
     </div>
   </section>
   <article class="container is-max-desktop p-4 content">
@@ -31,7 +33,7 @@ const baseurl = import.meta.env.BASE_URL;
     </p>
     <p>逸码的打字规则是极简的：先打两个字根、再依次打剩余部分的笔画。各版本在细节上略有不同。</p>
   </article>
-  <div class="columns is-desktop is-multiline is-gapless">
+  <div class="columns is-desktop is-multiline is-gapless mx-5">
     <IndexCard label="V20" href="V20">
       大字根、字根归类、优化前500、26键、27键
     </IndexCard>
@@ -39,13 +41,3 @@ const baseurl = import.meta.env.BASE_URL;
     <IndexCard label="VV4" href="VV4">字根少、打词、27键</IndexCard>
   </div>
 </BaseLayout>
-
-<script defer>
-  // const navmore_ele = document.getElementById("navmore");
-  // const navbasic_ele = document.getElementById("navbasic");
-
-  // navmore_ele.addEventListener("click", () => {
-  //   navbasic_ele.classList.toggle("is-active");
-  //   navmore_ele.classList.toggle("is-active");
-  // });
-</script>
