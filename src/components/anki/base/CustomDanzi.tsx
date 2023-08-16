@@ -1,30 +1,33 @@
 import type { Card } from "./Danzi";
 import Danzi from "./Danzi";
-import { readTsvAsArray, getDataText, readTsvAsMap } from "@c/utils";
+import { getJson } from "@c/utils";
 import { createSignal, createResource, Suspense, Show } from "solid-js";
 
-async function getDanziData(url: string, ymVer: string) {
-  const raw_comp_map = await getDataText(`${ymVer}/comp-map.tsv`);
-  const comp_map = readTsvAsMap(raw_comp_map);
+type RSS = Record<string, string>;
 
-  const raw_danzi = await getDataText(url);
-  return readTsvAsArray(
-    raw_danzi,
-    (l) =>
+async function getDanziData(url: string, ymVer: string) {
+  const comps = (await getJson(`${ymVer}/comps.json`)) as RSS;
+
+  const danzi = (await getJson(url)) as RSS;
+  return Object.entries(danzi).map(
+    ([zi, spelling]) =>
       ({
-        zi: l[0],
-        code: [...l[1]].map((c) => comp_map.get(c)).join(""),
-        info: { spelling: l[1] },
+        zi,
+        code: [...spelling].map((c) => comps[c] ?? "").join(""),
+        info: {
+          spelling,
+        },
       } as Card)
   );
 }
 
 export default function CustomDanzi(prop: { ymVer: string }) {
+  const { ymVer } = prop;
   const [chosen, setChosen] = createSignal("zi500");
 
   const [data] = createResource(chosen, async (v) => {
-    const r = await getDanziData(`${prop.ymVer}/${v}.tsv`, prop.ymVer);
-    return { cards: r, name: `V20danzi${v}` };
+    const r = await getDanziData(`${ymVer}/${v}.json`, ymVer);
+    return { cards: r, name: `${ymVer}danzi${v}` };
   });
 
   return (
