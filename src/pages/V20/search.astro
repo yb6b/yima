@@ -5,7 +5,7 @@ import Layout from "@l/V20Layout.astro";
 
 <Layout
   title="拆分查询 - 逸码 V20"
-  thisHref={import.meta.env.BASE_URL + "V20/search"}
+  thisHref={Astro.url.pathname}
 >
 
     <Search client:load />

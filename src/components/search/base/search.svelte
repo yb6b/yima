@@ -29,7 +29,7 @@
       <div class="control">
         <input
           bind:value={rawInput}
-          class="input is-primary is-rounded"
+          class="input is-info  is-rounded"
           type="text"
           autocomplete="none"
           autofocus="autofocus"
