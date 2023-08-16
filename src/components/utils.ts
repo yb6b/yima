@@ -31,7 +31,9 @@ export function scanTsv(content: string, foreachFn: (line: string[]) => void) {
   }
 }
 
-export async function getJson(url: string) {
+export async function getJson<T = Record<string, string>>(
+  url: string
+): Promise<T> {
   if (url.startsWith("/")) url = url.substring(1);
   const d = await fetch(import.meta.env.BASE_URL + url);
   const j = await d.json();
@@ -54,17 +56,17 @@ export async function getDataText(url: string) {
   }
 }
 
-export const GlobalCache: Map<string, any> = new Map();
-
 export function throttle(fn: Function, delay: number) {
   let timeId: number | null = null;
   return (...arg) => {
     if (timeId !== null) {
       clearTimeout(timeId);
     }
-    timeId = setTimeout(() => {
-      fn(...arg);
-    }, delay) as unknown as number;
+    return new Promise((res) => {
+      timeId = setTimeout(() => {
+        res(fn(...arg));
+      }, delay) as unknown as number;
+    });
   };
 }
 

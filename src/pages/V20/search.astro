@@ -1,13 +1,8 @@
 ---
-import Search from "@c/search/V20Search.svelte";
+import Search from "@c/search/V20/Search";
 import Layout from "@l/V20Layout.astro";
 ---
 
-<Layout
-  title="拆分查询"
-  thisHref={Astro.url.pathname}
->
-
-    <Search client:load />
-
+<Layout title="拆分查询" thisHref={Astro.url.pathname}>
+  <Search client:load />
 </Layout>
