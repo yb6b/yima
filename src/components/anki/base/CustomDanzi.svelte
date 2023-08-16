@@ -1,11 +1,14 @@
 <script>
-  import ZingenAnki from "./base/Danzi.svelte";
+  import ZingenAnki from "./Danzi.svelte";
   import { readTsvAsArray, readTsvAsMap, getDataText } from "@c/utils";
   import { onMount } from "svelte";
   import { writable } from "svelte/store";
 
+  /** @type {string} */
+  export let baseVersion;
+
   async function getData(url) {
-    const raw_comp_map = await getDataText("V20/comp-map.tsv");
+    const raw_comp_map = await getDataText(`${baseVersion}/comp-map.tsv`);
     const comp_map = readTsvAsMap(raw_comp_map);
 
     const raw_danzi = await getDataText(url);
@@ -19,14 +22,14 @@
   let chosenArticle = writable("zi500");
 
   onMount(() => {
-    const oldChosen = localStorage.getItem("yima_V20danzi_chosen");
+    const oldChosen = localStorage.getItem(`yima_${baseVersion}danzi_chosen`);
     if (oldChosen) {
       chosenArticle.set(oldChosen);
     } else {
       chosenArticle.set("zi500");
     }
     chosenArticle.subscribe((v) =>
-      localStorage.setItem("yima_V20danzi_chosen", v)
+      localStorage.setItem(`yima_${baseVersion}danzi_chosen`, v)
     );
   });
 

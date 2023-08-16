@@ -3,7 +3,7 @@
   import ShowTable from "./ShowTable.svelte";
 
   async function getData() {
-    const dataUrl = "V20/pinyin.tsv";
+    const dataUrl = "assets/pinyin.tsv";
     if (!GlobalCache.has(dataUrl)) {
       const raw = await getDataText(dataUrl);
       GlobalCache.set(dataUrl, readTsvAsMap(raw));
