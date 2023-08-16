@@ -7,7 +7,7 @@ export interface Props {
   thisHref: string;
 }
 
-const { title, thisHref } = Astro.props;
+const { title } = Astro.props;
 const description = "大字根、字根归类、优化常用字";
 const genLink = (label: string, relativeHref: string) => {
   return {
@@ -19,7 +19,7 @@ const genLink = (label: string, relativeHref: string) => {
 
 <BaseLayout title={title} description={description}>
   <HeroNavBar
-    title={title}
+    title={title + " - 逸码 V20"}
     subt={description}
     link={[
       genLink("说明书", "V20"),

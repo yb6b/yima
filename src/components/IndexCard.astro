@@ -1,0 +1,13 @@
+---
+export interface Props {
+  label: string;
+  href: string;
+}
+const { label, href } = Astro.props;
+const absHref = import.meta.env.BASE_URL + href;
+---
+
+<article class="message column m-4">
+  <div class="message-header"><a href={absHref}>逸码 {label}</a></div>
+  <div class="message-body"><slot /></div>
+</article>

@@ -3,106 +3,49 @@ import BaseLayout from "@l/base/Layout.astro";
 import ContanctUs from "@l/base/navbar/ContactUs.astro";
 import IntroArticle from "@ct/intro.md";
 import V20Intro from "@ct/V20-intro.md";
+import IndexCard from "@c/IndexCard.astro";
+const baseurl = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout title="逸码输入法" description="逸码输入法网站首页">
-  <section class="hero is-warning">
-    <div class="hero-head">
-      <nav class="navbar">
-        <div class="container">
-          <div class="navbar-brand">
-            <a class="navbar-item bg-white" href={import.meta.env.BASE_URL}>
-              <img
-                src={import.meta.env.BASE_URL + "assets/yi-cursive.svg"}
-                alt="Logo"
-              />
-            </a>
-            <span class="navbar-burger" id="navmore" data-target="navbasic">
-              <span></span>
-              <span></span>
-              <span></span>
-            </span>
-          </div>
-          <div id="navbasic" class="navbar-menu">
-            <div class="navbar-end">
-              <ContanctUs />
-            </div>
-          </div>
-        </div>
-      </nav>
-    </div>
-
+  <section class="hero is-medium is-danger">
     <div class="hero-body">
-      <div class="container has-text-centered">
-        <p class="title">逸码输入法</p>
-        <p class="subtitle has-text-grey">乱序纯形二码顶</p>
-      </div>
-    </div>
-
-    <div class="hero-foot">
-      <nav class="tabs is-boxed is-centered">
-        <div class="container">
-          <ul id="tabsel">
-            <li data-to="intro" class="is-active">
-              <a>介绍</a>
-            </li>
-            <li data-to="v20">
-              <a>V20</a>
-            </li>
-            <li id="vv9">
-              <a>VV9</a>
-            </li>
-            <li id="vv4">
-              <a>VV4</a>
-            </li>
-            <li id="cy">
-              <a>晨逸</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
+      <h1 class="title has-text-wide pb-4">逸码输入法</h1>
+      <h2 class="subtitle">乱序纯形二码顶功输入方案</h2>
     </div>
   </section>
-  <div id="atc" class="container is-max-desktop p-5 mt-2 content">
-    <article id="intro">
-      <IntroArticle />
-    </article>
-    <article id="v20" class="display-none">
-      <V20Intro />
-    </article>
+  <article class="container is-max-desktop p-4 content">
+    <p>
+      逸码输入法是用智能算法生成的，手感、效率极佳。得力于Rime平台，逸码可以方便地打词、打句。你可以
+      <a href="https://jq.qq.com/?_wv=1027&k=5V71KdOJ" target="_blank"
+        >加入我们的 QQ 群</a
+      >
+      ，或者<a href="http://yima.ysepan.com/" target="_blank">访问网盘</a>
+      ，或者从 <a href="https://github.com/yb6b/yima/releases" target="_blank">
+        Github Release 页</a
+      > 下载所需的文件。
+    </p>
+    <p>
+      逸码有多个版本，各自有不同的侧重：字根数量、按键数量、优化算法、拆分方式等。我们推荐
+      <a href={baseurl + "V20"}> 逸码V20 </a>版本，它的拆分更准确、更易学。
+    </p>
+    <p>逸码的打字规则是极简的：先打两个字根、再依次打剩余部分的笔画。各版本在细节上略有不同。</p>
+  </article>
+  <div class="columns is-desktop is-multiline is-gapless">
+    <IndexCard label="V20" href="V20">
+      大字根、字根归类、优化前500、26键、27键
+    </IndexCard>
+    <IndexCard label="VV9" href="VV9">大字根、26键、27键</IndexCard>
+    <IndexCard label="VV4" href="VV4">字根少、打词、27键</IndexCard>
   </div>
 </BaseLayout>
 
 <script defer>
-  const navmore_ele = document.getElementById("navmore");
-  const navbasic_ele = document.getElementById("navbasic");
+  // const navmore_ele = document.getElementById("navmore");
+  // const navbasic_ele = document.getElementById("navbasic");
 
-  navmore_ele.addEventListener("click", () => {
-    navbasic_ele.classList.toggle("is-active");
-    navmore_ele.classList.toggle("is-active");
-  });
-
-  document.getElementById("tabsel").addEventListener("click", (e) => {
-    const t = e.target;
-    if (t.nodeName === "A") {
-      e.stopPropagation();
-      document
-        .querySelectorAll("#tabsel > li")
-        .forEach((e) => e.classList.remove("is-active"));
-
-      const tp = t.parentElement;
-      tp.classList.add("is-active");
-
-      document
-        .querySelectorAll("#atc article")
-        .forEach((e) => e.classList.add("display-none"));
-      const toId = tp.dataset.to;
-      document.getElementById(toId).classList.remove("display-none");
-    }
-  });
+  // navmore_ele.addEventListener("click", () => {
+  //   navbasic_ele.classList.toggle("is-active");
+  //   navmore_ele.classList.toggle("is-active");
+  // });
 </script>
-<style>
-  .display-none{
-    display: none;
-  }
-  </style>
