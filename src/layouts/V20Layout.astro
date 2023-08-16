@@ -15,14 +15,16 @@ const genLink = (label: string, relativeHref: string) => {
     href: import.meta.env.BASE_URL + relativeHref,
   };
 };
+const customTitle = title + " - 逸码 V20"
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={customTitle} description={description}>
   <HeroNavBar
-    title={title + " - 逸码 V20"}
+    title={customTitle}
     subt={description}
     link={[
       genLink("说明书", "V20"),
+      genLink("下载", "V20/download"),
       genLink("字根练习", "V20/zigen"),
       genLink("单字练习", "V20/danzi"),
       genLink("反查", "V20/search"),

@@ -1,0 +1,28 @@
+<label class="checkbox">
+  <input type="checkbox" id="ce" checked />
+  使用代理网站加速下载
+</label>
+
+<script>
+  const ghproxyPrefix = "https://ghproxy.com/";
+  const ceele = document.getElementById("ce") as HTMLInputElement;
+  ceele.addEventListener("change", (e) => {
+    const a = document.getElementsByClassName("gr");
+    if (e.target.checked) {
+      for (const i of a) {
+        if (i.tagName !== "A") continue;
+        const oldHref = "" + i.href;
+        if (oldHref.startsWith(ghproxyPrefix)) continue;
+        i.href = ghproxyPrefix + oldHref;
+      }
+    } else {
+      for (const i of a) {
+        if (i.tagName !== "A") continue;
+        const oldHref = "" + i.href;
+        if (!oldHref.startsWith(ghproxyPrefix)) continue;
+        i.href = oldHref.slice(ghproxyPrefix.length);
+      }
+    }
+  });
+  ceele.checked = true;
+</script>

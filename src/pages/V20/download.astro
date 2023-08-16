@@ -1,0 +1,52 @@
+---
+import MainLayout from "@l/V20Layout.astro";
+
+import ChangeGhproxy from "@c/ChangeGhproxy.astro";
+import DownloadGithubRelease from "@c/DownloadGithubRelease.astro";
+
+const data: [string, string][][] = [
+  [
+    ["duoduo-4.0.setup.exe.7z", "多多4.0安装包.7z"],
+    ["Rime-20220609.7z", "Rime 配置文件.7z"],
+    ["rime-single.7z", "纯单字版Rime配置文件（新手推荐）.7z"],
+  ],
+  [
+    ["Keymap.8K.pdf", "8K彩色键位图.pdf"],
+    ["Keymap.8K.monochrome.pdf", "8K黑白键位图.pdf"],
+    ["zigen-anki.apkg", "字根记忆Anki包.apkg"],
+  ],
+  [
+    ["division.7z", "拆分表.7z"],
+    ["sai-ma-biao.7z", "极速赛码器码表.7z"],
+  ],
+];
+---
+
+<MainLayout title="下载" thisHref={Astro.url.pathname}>
+  <div class="columns is-centered p-4">
+    <main class="column is-half container content">
+      <ChangeGhproxy />
+      {
+        data.map((e) => (
+          <ul>
+            {e.map((e2) => (
+              <li>
+                <DownloadGithubRelease
+                  filename={e2[0]}
+                  tag="v20"
+                  label={e2[1]}
+                />
+              </li>
+            ))}
+          </ul>
+        ))
+      }
+
+      <p>
+        Github 下载较慢，建议从<a href="http://yima.ysepan.com/" target="_blank"
+          >网盘</a
+        >里下载。
+      </p>
+    </main>
+  </div>
+</MainLayout>

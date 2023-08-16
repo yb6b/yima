@@ -1,0 +1,14 @@
+---
+export interface Props {
+  filename: string;
+  tag: string;
+  label: string;
+}
+
+const { filename: href, tag, label } = Astro.props;
+const customHref = `https://ghproxy.com/https://github.com/yb6b/yima/releases/download/${tag}/${href}`;
+---
+
+<a href={customHref} class="gr" download={label} target="_blank">
+  {label}
+</a>

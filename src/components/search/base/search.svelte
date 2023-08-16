@@ -32,7 +32,7 @@
           class="input is-info  is-rounded"
           type="text"
           autocomplete="none"
-          autofocus="autofocus"
+          autofocus
           placeholder="查询的文本 / 全拼 / 四角号码 / 笔画"
         />
       </div>
