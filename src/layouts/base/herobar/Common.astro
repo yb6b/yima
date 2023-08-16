@@ -11,8 +11,7 @@ export interface Props {
 
 const { title, subt, link } = Astro.props;
 
-const isActive = (href: string) =>
-  Astro.url.pathname ===  href
+const isActive = (href: string) => Astro.url.pathname === href;
 ---
 
 <section class="hero is-warning">
@@ -58,7 +57,7 @@ const isActive = (href: string) =>
         <ul>
           {
             link.map((e) => (
-              <li class={isActive(e.href) ?  "is-active" :""}>
+              <li class={isActive(e.href) ? "is-active" : ""}>
                 <a href={e.href}>{e.label}</a>
               </li>
             ))

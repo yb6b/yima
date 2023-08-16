@@ -8,7 +8,7 @@ const Bihua = lazy(() => import("./items/Bihua"));
 const Sijiao = lazy(() => import("./items/Sijiao"));
 import { FullData } from "./items/share";
 
-export function Search(prop: { data: FullData }) {
+export default function Search(prop: { data: FullData }) {
   const [RawInput, setRawInput] = createSignal("");
 
   return (

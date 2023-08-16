@@ -9,10 +9,10 @@ export function readTsvAsArray<T>(
   return result;
 }
 
-export function readTsvAsMap(content: string) {
-  const result: Map<string, string> = new Map();
+export function readTsvAsObj(content: string) {
+  const result: Record<string, string> = {};
   scanTsv(content, (line) => {
-    result.set(line[0], line[1]);
+    result[line[0]] = line[1];
   });
   return result;
 }

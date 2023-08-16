@@ -2,16 +2,30 @@
 export interface Props {
   label: string;
   href: string;
+  tags: string[];
 }
-const { label, href } = Astro.props;
+const { label, href, tags } = Astro.props;
 const absHref = import.meta.env.BASE_URL + href;
 ---
 
-<article class="message column m-4">
+<article class="message mx-4 my-1">
   <a href={absHref} style="text-decoration: none;">
     <div class="message-body">
-      <h2 class="title has-text-wide">逸码 {label}</h2>
-      <slot />
+      <div class="is-4 title has-text-wide">
+        {label}
+      </div>
+      {
+        tags.map((e) =>
+          e === "26键" || e === "27键" ? (
+            <div class="tag is-info is-rounded mr-2">{e}</div>
+          ) : (
+            <div class="tag is-success is-rounded mr-2">{e}</div>
+          )
+        )
+      }
+      <p class="mt-3">
+        <slot />
+      </p>
     </div>
   </a>
 </article>

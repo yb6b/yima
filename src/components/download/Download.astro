@@ -1,0 +1,32 @@
+---
+import ChangeGhproxy from "./ChangeGhproxy.astro";
+import DownloadGithubRelease from "./DownloadGithubRelease.astro";
+export interface Props {
+  data: [string, string][][];
+}
+
+const { data } = Astro.props;
+---
+
+<div class="columns is-centered p-4">
+  <main class="column is-half container content">
+    <ChangeGhproxy />
+    {
+      data.map((e) => (
+        <ul>
+          {e.map((e2) => (
+            <li>
+              <DownloadGithubRelease filename={e2[0]} tag="v20" label={e2[1]} />
+            </li>
+          ))}
+        </ul>
+      ))
+    }
+
+    <p>
+      Github 下载较慢，建议从<a href="http://yima.ysepan.com/" target="_blank"
+        >网盘</a
+      >里下载。
+    </p>
+  </main>
+</div>

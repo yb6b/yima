@@ -1,8 +1,8 @@
 ---
-import MainLayout from "@l/V20Layout.astro";
-import { V20Danzi } from "@c/anki/V20";
+import Layout from "@l/Layout.astro";
+import Danzi from "@c/anki/Danzi.astro";
 ---
 
-<MainLayout title="单字训练" thisHref={Astro.url.pathname}>
-  <V20Danzi client:load />
-</MainLayout>
+<Layout title="单字训练">
+  <Danzi />
+</Layout>

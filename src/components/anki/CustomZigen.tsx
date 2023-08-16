@@ -1,5 +1,5 @@
-import Zigen from "./Zigen";
-import type { Card } from "./Zigen";
+import Zigen from "./base/Zigen";
+import type { Card } from "./base/Zigen";
 import { readTsvAsArray, getDataText } from "@c/utils";
 import { Show, createResource } from "solid-js";
 

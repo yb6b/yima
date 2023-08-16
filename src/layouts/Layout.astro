@@ -1,0 +1,19 @@
+---
+import BaseLayout from "./base/Layout.astro";
+import HeroNavBar from "./base/herobar/Custom.astro";
+import { YmDesc } from "@config";
+
+const relativePath = Astro.url.pathname.slice(import.meta.env.BASE_URL.length);
+const ymVer = relativePath.split("/")[0];
+
+const { title, desc } = YmDesc[ymVer];
+
+const customTitle = title + " - 逸码 V20";
+---
+
+<BaseLayout title={customTitle} description={desc}>
+  <HeroNavBar />
+  <div class="container is-max-desktop p-5 mt-2 content">
+    <slot />
+  </div>
+</BaseLayout>
