@@ -1,8 +1,8 @@
 ---
-import ZigenAnki from "@c/anki/V20Zigen.svelte";
+import { V20Zigen } from "@c/anki/V20";
 import MainLayout from "@l/V20Layout.astro";
 ---
 
 <MainLayout title="字根训练" thisHref={Astro.url.pathname}>
-  <ZigenAnki client:load />
+  <V20Zigen client:load />
 </MainLayout>
