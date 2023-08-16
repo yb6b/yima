@@ -80,3 +80,22 @@ function findItem(data: [string, string][], aim: string) {
 function findPrefix(data: [string, string][], aim: string) {
   return data.filter((v) => v[0].length > aim.length && v[0].startsWith(aim));
 }
+
+export function FormatRelativePath(astroUrlPathname: string) {
+  const relativePath = astroUrlPathname.slice(import.meta.env.BASE_URL.length);
+  const pathSplit = relativePath.split("/");
+
+  if (!pathSplit.at(-1)) {
+    pathSplit.pop();
+  }
+
+  const last = pathSplit[pathSplit.length - 1];
+  if (last === "index.html") {
+    pathSplit.pop();
+  } else {
+    if (last.endsWith(".html")) {
+      pathSplit[pathSplit.length - 1] = last.slice(0, -5);
+    }
+  }
+  return pathSplit.join("/");
+}

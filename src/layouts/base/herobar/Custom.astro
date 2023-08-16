@@ -1,5 +1,6 @@
 ---
 import HeroBar from "./Common.astro";
+import { FormatRelativePath } from "@c/utils";
 import { YmDesc } from "@config";
 
 export interface Props {
@@ -9,8 +10,9 @@ export interface Props {
   }>;
 }
 
-const relativePath = Astro.url.pathname.slice(import.meta.env.BASE_URL.length);
+const relativePath = FormatRelativePath(Astro.url.pathname);
 const ymVer = relativePath.split("/")[0];
+
 const { title, desc } = YmDesc[ymVer];
 const link = Astro.props.link ?? [
   {
@@ -36,14 +38,15 @@ const link = Astro.props.link ?? [
 ];
 const link2 = link.map(({ label, href }) => ({
   label,
-  href: `${import.meta.env.BASE_URL}${ymVer}/${href}`,
+  href: `${import.meta.env.BASE_URL}${ymVer}` + (href ? `/${href}` : ""),
 }));
 
 const href2label = Object.fromEntries(
   link2.map(({ label, href }) => [href, label])
 );
 
-const title2 = href2label[Astro.url.pathname] + " - " + title;
+const title2 =
+  href2label[import.meta.env.BASE_URL + relativePath] + " - " + title;
 ---
 
 <HeroBar title={title2} subt={desc} link={link2} />
