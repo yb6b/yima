@@ -1,0 +1,13 @@
+---
+import Layout from "@l/Layout.astro";
+
+import Download from "@c/download/Download.astro";
+
+const data: [string, string][][] = [
+  [["yima-v20-27-data.7z", "全码表、字根映射表.7z"]],
+];
+---
+
+<Layout title="下载">
+  <Download data={data} />
+</Layout>

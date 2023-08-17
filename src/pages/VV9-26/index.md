@@ -1,3 +1,10 @@
+---
+layout: '@l/Layout.astro'
+title: 逸码VV9·26键 说明书
+author: yb6b
+description: 口口吃肉，橘姐专享。
+---
+
 > -- 依书写的笔顺取码/笔划的顶功方案，提供“口口吃肉”的输入体验
 
 ![逸码VV9-26键字根图](/yima/VV9-26/kbd.webp)

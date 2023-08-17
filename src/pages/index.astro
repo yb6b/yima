@@ -39,7 +39,7 @@ const baseurl = import.meta.env.BASE_URL;
       逸码的打字规则是极简的：先打两个字根、再依次打剩余部分的笔画。各版本在细节上略有不同。
     </p>
   </article>
-  <div class="tile is-ancester">
+  <div class="tile is-ancester m-auto" style="max-width: 60rem;">
     <div class="tile is-vertical">
       <div class="tile is-parent">
         <div class="tile is-child">
@@ -47,8 +47,18 @@ const baseurl = import.meta.env.BASE_URL;
             label="逸码 V20"
             href="V20"
             tags={["大字根", "字根归类", "26键"]}
+            hightlight
           >
-            专门优化了前500字，拆分错误更少。使用虎码的算法。
+            强烈推荐！！专门优化了前500字，拆分错误更少。使用虎码的算法。
+          </IndexCard>
+        </div>
+        <div class="tile is-child">
+          <IndexCard
+            label="逸码 V20 · 27键"
+            href="V20-27"
+            tags={["大字根", "字根归类", "27键"]}
+          >
+            使用虎码的算法。实验品。
           </IndexCard>
         </div>
       </div>
@@ -80,15 +90,6 @@ const baseurl = import.meta.env.BASE_URL;
             tags={["字根少", "27键"]}
           >
             Mogu 大佬的退火算法。加权当量极低。
-          </IndexCard>
-        </div>
-        <div class="tile is-child">
-          <IndexCard
-            label="逸码 VV4 · 26键"
-            href="VV4-26"
-            tags={["少字根", "26键"]}
-          >
-            退火算法。
           </IndexCard>
         </div>
       </div>

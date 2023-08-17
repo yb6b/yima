@@ -1,14 +1,22 @@
 ---
 import BaseLayout from "./base/Layout.astro";
 import HeroNavBar from "./base/herobar/Custom.astro";
-import { YmDesc } from "@config";
+import { FormatRelativePath } from "@c/utils";
+import { YmDesc, findHrefByLabel } from "@config";
 
-const relativePath = Astro.url.pathname.slice(import.meta.env.BASE_URL.length);
+const relativePath = FormatRelativePath(Astro.url.pathname);
 const ymVer = relativePath.split("/")[0];
 
-const { title, desc } = YmDesc[ymVer];
+const { title, desc, tabs } = YmDesc[ymVer];
 
-const customTitle = title + " - 逸码 V20";
+const link = tabs.map(({ label, href }) => ({
+  label,
+  href: `${import.meta.env.BASE_URL}${ymVer}` + (href ? `/${href}` : ""),
+}));
+
+const tabTitle = findHrefByLabel(link, import.meta.env.BASE_URL + relativePath);
+
+const customTitle = `${tabTitle} - ${title}`;
 ---
 
 <BaseLayout title={customTitle} description={desc}>

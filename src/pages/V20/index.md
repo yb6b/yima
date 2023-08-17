@@ -1,8 +1,8 @@
 ---
-title: "逸码官网"
-description: "首页介绍"
-updatedDate: "2023-1-14"
-heroImage: "/yi-cursive.svg"
+layout: '@l/Layout.astro'
+title: 逸码V20·26键 说明书
+author: yb6b
+description: 最成熟的版本
 ---
 
 ## 1. 概述
