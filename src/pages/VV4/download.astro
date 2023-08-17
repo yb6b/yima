@@ -1,0 +1,31 @@
+---
+import Layout from "@l/Layout.astro";
+
+import Download from "@c/download/Download.astro";
+
+const data: [string, string][][] = [
+  [
+    ["yima-vv4-rime-20220426.7z", "Rime 配置文件.7z"],
+    [
+      "yima-vv4-single-duoduo4.0-setup.exe.7z",
+      "【纯单字】多多4.0安装包.exe.7z",
+    ],
+    ["yima-vv4-yong-phrase.7z", "【空格打词】小小配置文件夹.7z"],
+    ["yima-vv4-yong-phrase-v1.2.exe.7z", "【空格打词】小小单文件版.exe.7z"],
+  ],
+  [
+    ["yima-vv4-help-mindmap.pdf", "思维导图说明.pdf"],
+    ["yima-vv4-kbd-8k.jpg", "8K字根图图片.jpg"],
+    ["yima-vv4-kbd-8k.pdf", "字根图矢量文件.pdf"],
+    ["yima-vv4-kbd-monochrome.pdf", "黑白的字根图矢量文件.pdf"],
+  ],
+  [
+    ["yima-vv4-division.7z", "拆分表.7z"],
+    ["yima-vv4-wanma-dazitong.7z", "万码打字通配置文件.7z"],
+  ],
+];
+---
+
+<Layout title="下载">
+  <Download data={data} />
+</Layout>

@@ -64,6 +64,11 @@ export const YmDesc: Record<
     desc: "实验版本",
     tabs: narrowTabBar,
   },
+  VV4: {
+    title: "逸码 VV4",
+    desc: "梦开始的地方",
+    tabs: narrowTabBar,
+  },
 };
 
 export function findHrefByLabel(tabs: Tab[], href: string) {
