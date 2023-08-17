@@ -1,0 +1,18 @@
+---
+import Layout from "@l/Layout.astro";
+
+import Download from "@c/download/Download.astro";
+
+const data: [string, string][][] = [
+  [["yima-vv9-27-rime-20211115.7z", "Rime 配置文件.7z"]],
+  [["yima-vv9-27-kbd.xlsx", "Excel 制作的字根图.xlsx"]],
+  [
+    ["yima-vv9-27-chaifen.7z", "拆分表.txt.7z"],
+    ["yima-vv9-27-jisu-saimabiao-20211115.txt.7z", "极速赛码表.txt.7z"],
+  ],
+];
+---
+
+<Layout title="下载">
+  <Download data={data} />
+</Layout>

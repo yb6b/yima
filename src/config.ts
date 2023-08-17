@@ -54,6 +54,11 @@ export const YmDesc: Record<
     desc: "字根归类、口口吃肉、橘姐专享",
     tabs: fullTabBar,
   },
+  "VV9-27": {
+    title: "逸码 VV9 · 27键",
+    desc: "手感极佳",
+    tabs: narrowTabBar,
+  },
   "V20-27": {
     title: "逸码 V20 · 27键",
     desc: "实验版本",
