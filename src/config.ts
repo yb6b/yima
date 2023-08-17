@@ -69,6 +69,11 @@ export const YmDesc: Record<
     desc: "梦开始的地方",
     tabs: narrowTabBar,
   },
+  chenyi: {
+    title: "晨逸二笔",
+    desc: "乱序两笔二码顶",
+    tabs: narrowTabBar,
+  },
 };
 
 export function findHrefByLabel(tabs: Tab[], href: string) {
