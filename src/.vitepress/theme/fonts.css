@@ -1,0 +1,17 @@
+@font-face {
+    font-family: "kaiti-yima";
+    src: url("/kaiti-yima.woff2") format("woff2");
+}
+
+.kaiti-font {
+    font-family: "kaiti-yima", "kaiti", "楷体", system-ui;
+}
+
+@font-face {
+    font-family: "outi-yima";
+    src: url("/outi-yima.woff2") format("woff2");
+}
+
+.outi-font {
+    font-family: "outi-yima", "欧体楷书", "楷体", fantasy, system-ui;
+}

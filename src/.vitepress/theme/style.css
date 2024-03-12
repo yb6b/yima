@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    .round-bg {
+        background-image: radial-gradient(rgba(160, 148, 36, 0.237) 50%, transparent 0);
+    }
+}
