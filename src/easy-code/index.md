@@ -21,7 +21,7 @@
 
 ![组词测评](/easy-code/eval_ci.webp)
 
-测评工具使用了 [形码盒子](//yb6b.github.io)
+测评工具使用了 [形码盒子](https://yb6b.github.io)
 
 ## 键盘字根图
 ![易码字根图](/easy-code/kbd.webp)
@@ -63,7 +63,7 @@
 
 ### <img src="https://chaifen.app/icon.webp" alt="自动拆分系统图标" width="28" style="display:inline" /> 自动拆分系统 {#chaifen.app}
 
-是个 web app。官网是 [chaifen.app](https://chaifen.app) 或者 [hanzi-chai](hanzi-chai.github.io)。
+是个 web app。官网是 [chaifen.app](https://chaifen.app) 或者 [hanzi-chai](https://hanzi-chai.github.io)。
 
 - [使用教程](https://docs.qq.com/doc/DZXZ2bXhISmh3dk1E)（腾讯文档）
 - [仓库](https://github.com/hanzi-chai/hanzi-chai.github.io)
