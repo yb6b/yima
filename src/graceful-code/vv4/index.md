@@ -1,6 +1,3 @@
----
-title: 逸码VV4·27键 说明书
----
 <script setup>
 const urls = [
     [
@@ -25,6 +22,7 @@ const urls = [
 ];
 </script>
 
+# 逸码VV4·27键 说明
 
 ![字根图](/vv4/kbd.webp)
 

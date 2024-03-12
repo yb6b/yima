@@ -1,13 +1,13 @@
 ---
-title: 易码拆分反查
 aside: false
 ---
 <script setup>
     import Search from "@/search/FetchSearch.vue"
 </script>
 
-<Search hanziJson="/easy-code/chaifen.json"  compJson="/easy-code/zigen.json" compFont="outi-font" id="easy-code"/>
+# 易码拆分反查
 
+<Search hanziJson="/easy-code/chaifen.json"  compJson="/easy-code/zigen.json" compFont="outi-font" id="easy-code"/>
 :::details 拆分查询使用帮助
 这个网页可以方便地查询逸码的拆分，可以链接到 [字统网](https://zi.tools/)、[叶典网](http://yedict.com/)、[百度汉语](https://hanyu.baidu.com/)、[汉典网](https://www.zdic.net/)。本网页会无视逸码码表以外的生僻字。
 网页在第一次查询拼音、四角、笔画时，需要下载相应的数据，请稍后。

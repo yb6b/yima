@@ -1,7 +1,4 @@
----
-title: 逸码 二码顶
----
-# 逸码
+# 逸码介绍
 逸码输入法是用智能算法生成的，手感、效率极佳。得力于Rime平台，逸码可以方便地打词、打句。你可以[加入我们的 QQ 群](https://jq.qq.com/?_wv=1027&k=5V71KdOJ)（790835977），或者[访问网盘](http://yima.ysepan.com/)，或者从[Github Release 页](https://github.com/yb6b/yima/releases)下载所需的文件。
 
 逸码有多个版本，各自有不同的侧重：字根数量、按键数量、优化算法、拆分方式等。我们推荐[逸码V20](/graceful-code/v20/)版本，它的拆分更准确、更易学。
