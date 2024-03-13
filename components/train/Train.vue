@@ -77,7 +77,7 @@ function checkNextItem(answer: string) {
         </div>
         <div class="flex justify-center p-5">
             <input id="input_el" type="text" placeholder="输入字根编码" v-model="userKeys"
-                :class="['input w-half max-w-xs input-bordered text-center input-sm dark:bg-slate-600', { 'input-error': !isCorrect }]" />
+                :class="['input w-half max-w-xs input-bordered text-center input-sm dark:bg-slate-800 bg-white', { 'input-error': !isCorrect }]" />
         </div>
         <div :class="['text-center', { 'opacity-0': !isFirstLearn }]">答案是 <b class="font-mono">{{ card.key }}</b></div>
     </div>
