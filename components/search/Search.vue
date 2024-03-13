@@ -4,6 +4,7 @@ import { shallowRef } from "vue";
 import { watchThrottled, useUrlSearchParams } from "@vueuse/core";
 import SearchAsync from "./SearchAsync.vue";
 import SearchHanzi from "./SearchHanzi.vue";
+import SearchHelp from "./SearchHelp.vue";
 import { type Result } from "./share";
 const p = defineProps<{
     /** 汉字到拆分表的映射 */
@@ -69,7 +70,9 @@ function prehandleJson(json: object) {
 </script>
 
 <template>
-    <label class="input input-bordered dark:bg-slate-800 flex items-center gap-2">
+
+
+    <label class="input input-bordered bg-gray-100 dark:bg-slate-800 flex items-center gap-2 mt-8">
         <input type="text" class="grow" placeholder="查询的文本 / 全拼 / 四角号码 / 笔画" v-model="userInput" />
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4 opacity-70">
             <path fill-rule="evenodd"
@@ -78,6 +81,10 @@ function prehandleJson(json: object) {
         </svg>
     </label>
 
+    <div class="flex justify-center py-2">
+        <SearchHelp />
+    </div>
+
     <div v-if="kind === ''" class="opacity-40 text-center p-9 tracking-widest">从上方搜索条开始反查吧!</div>
     <SearchHanzi v-else-if="kind === 'z'" :result="searchHanziHandler()" />
     <SearchAsync v-else-if="kind === 'p'" title="拼音" json="/data/pinyin.json" :handler :text="searchPatterns" />
@@ -85,4 +92,6 @@ function prehandleJson(json: object) {
         <SearchAsync title="笔划" json="/data/bihua.json" :handler :text="searchPatterns" />
         <SearchAsync title="四角" json="/data/sijiao.json" :handler :text="searchPatterns" :prehandleJson />
     </template>
+
+
 </template>

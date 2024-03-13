@@ -20,7 +20,7 @@ export default defineConfig({
     },
   },
   head: [
-    ['link', { rel: 'icon', href: base + 'icon.svg', type: 'image/svg+xml' }],
+    ['link', { rel: 'icon', href: 'icon.svg', type: 'image/svg+xml' }],
   ],
   vite: {
     css: {

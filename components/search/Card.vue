@@ -24,7 +24,7 @@ const unicode = computed(() => p.hanzi.charCodeAt(0).toString(16).toUpperCase())
 </script>
 
 <template>
-    <div class="group border p-3 m-2 rounded-3xl bg-base-100 shadow-md kaiti-font text-center dark:bg-gray-800">
+    <div class="group border p-3 m-2 rounded-3xl shadow-md font-serif text-center bg-gray-100 dark:bg-slate-800">
         <div class="text-4xl text-blue-800 dark:text-blue-400">{{ hanzi }}</div>
         <div class="text-xl mt-2">
             <ruby v-for="(c, index) in comp" :key="c">
@@ -38,7 +38,7 @@ const unicode = computed(() => p.hanzi.charCodeAt(0).toString(16).toUpperCase())
             </ruby>
         </div>
         <div class="invisible justify-center group-hover:visible">
-            <div class="flex justify-around">
+            <div class="flex justify-around dark:opacity-55 opacity-100">
                 <a :href="'https://zi.tools/zi/' + uriText" class="" target="_blank" rel="noreferrer" title="字统网查询">
                     <img :src=ZitongLogo alt="字统网" width="22" />
                 </a>
