@@ -43,7 +43,7 @@ const urls = [
   
   加权键长 2.40，左右互击 69.44%
 
-  [![科学形码测评结果](/v20/measure.webp)](/v20/measure.webp)
+  ![科学形码测评结果](/v20/measure.webp)
 
 - **赛文码长数据**
 
