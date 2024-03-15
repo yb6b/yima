@@ -5,7 +5,7 @@ export interface ZigenCard {
     name: string;
     key: string;
     rel: string;
-    kind?: 'stroke'
+    kind?: 'b'|'eb'
 }
 
 export interface ChaiCard {

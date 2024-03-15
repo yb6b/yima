@@ -14,9 +14,7 @@ const fontClass = inject('font')
 
 let thisSchedule: Schedule<Card>;
 const card = shallowRef<Card>({
-    name: "",
-    key: "",
-    rel: '',
+    name: '',
 })
 const progress = shallowRef(0)
 const isFirstLearn = shallowRef(true)
@@ -60,18 +58,24 @@ function checkNextItem(answer: string) {
 
 <template>
     <div
-        :class="['md:w-2/3 w-full shadow-sm my-12 pb-24 bg-opacity-10  rounded-md', { 'bg-red-700': !isCorrect, 'bg-slate-500':isCorrect  }]">
+        :class="['md:w-2/3 w-full shadow-sm my-12 pb-24 bg-opacity-10  rounded-md', { 'bg-red-700': !isCorrect, 'bg-slate-500': isCorrect }]">
         <div class="flex justify-center mb-24">
             <progress class="progress w-full" :value="progress" :max="cards.length" />
         </div>
         <div class="flex justify-around mb-8">
             <div :class="['text-6xl ', 'kaiti-font', fontClass, { 'text-red-400': !isCorrect }]">{{ card.name }}</div>
-            <div class="flex tracking-widest flex-col opacity-70" v-if="'rel' in card">
-                <div class="text-gray-500 text-sm">
-                    相关的字：
+            <div class="flex flex-col" v-if="'rel' in card || 'kind' in card">
+                <div class="flex tracking-widest flex-col opacity-70" v-if="'rel' in card">
+                    <div class="text-gray-500 text-sm">
+                        相关的字：
+                    </div>
+                    <div>
+                        {{ card.rel }}
+                    </div>
                 </div>
-                <div>
-                    {{ card.rel }}
+                <div class=" tracking-widest pt-6 text-blue-600 dark:text-blue-300"
+                    v-if="'kind' in card && card.kind == 'b'">
+                    五个基础笔画
                 </div>
             </div>
         </div>
@@ -79,7 +83,10 @@ function checkNextItem(answer: string) {
             <input id="input_el" type="text" placeholder="输入字根编码" v-model="userKeys"
                 :class="['input w-half max-w-xs input-bordered text-center input-sm dark:bg-slate-800 bg-white', { 'input-error': !isCorrect }]" />
         </div>
-        <div :class="['text-center', { 'opacity-0': !isFirstLearn }]">答案是 <b class="font-mono">{{ card.key }}</b></div>
+        <div :class="['text-center', { 'opacity-0': !isFirstLearn }]">答案是 <b class="font-mono">{{ card.key }}</b>
+            <span :class="[fontClass]" v-if="'comp' in card">（{{ card.comp }}）</span>
+        </div>
+
     </div>
 
     <div class="text-gray-500">训练进度：{{ progress }} / {{ cards.length }}</div>
