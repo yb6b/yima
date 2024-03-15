@@ -1,15 +1,11 @@
 import { defineConfig } from 'vitepress'
-import { argv } from "node:process";
 import path from "node:path"
 import tailwind from "tailwindcss"
 import autoprefixer from "autoprefixer"
 
-const base = argv.at(-1) === 'yima' ? '/yima/' : '/'
-console.log(base);
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "易码",
-  base,
   description: "极致的乱序纯形顶功输入方案",
   lang: "zh-hans-CN",
   outDir: "../dist",
@@ -35,7 +31,7 @@ export default defineConfig({
     }
   },
   themeConfig: {
-    logo: base + 'icon.svg',
+    logo: '/icon.svg',
     nav: [
       { text: '主页', link: '/' },
       {
