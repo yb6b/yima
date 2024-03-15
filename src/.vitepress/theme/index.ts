@@ -2,9 +2,12 @@
 import type { Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme-without-fonts'
 import Download from "./components/Download.vue";
+import type { EnhanceAppContext } from 'vitepress'
+import { useMediumZoomProvider } from '../hooks'
 import { h } from 'vue'
 import './style.css'
 import './fonts.css'
+
 
 export default {
   extends: DefaultTheme,
@@ -12,5 +15,6 @@ export default {
   enhanceApp({ app, router, siteData }) {
     // 注册全局组件
     app.component('Download', Download)
+    useMediumZoomProvider(app, router)
   }
 } satisfies Theme

@@ -16,6 +16,9 @@ hero:
     - theme: alt
       text: 逸码V20
       link: /graceful-code/
+    - theme: alt
+      text: 下 载
+      link: http://yima.ysepan.com/
 
 features:
   - title: 易码

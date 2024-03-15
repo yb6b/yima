@@ -4,7 +4,7 @@
 }
 
 .kaiti-font {
-    font-family: "kaiti-yima", "kaiti", "楷体", system-ui;
+    font-family: "kaiti-yima", "kaiti", "楷体", system-ui, 'TH-Feon', 'TH-Tshyn-P2', 'TH-Tshyn-P0', 'TH-Tshyn-P1', 'TH-Tshyn-P16', '宋体',system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 @font-face {
@@ -13,7 +13,7 @@
 }
 
 .outi-font {
-    font-family: "outi-yima", "欧体楷书", "楷体", fantasy, system-ui;
+    font-family: "outi-yima", "欧体楷书", "楷体";
 }
 
 :root {
@@ -24,13 +24,25 @@
     --vp-c-brand-soft: var(--vp-c-red-soft);
 
     --vp-home-hero-name-color: transparent;
-    --vp-home-hero-name-background:  -webkit-linear-gradient(
-        120deg,
-        var(--vp-c-brand-1),
-        var(--vp-c-brand-3) 
-      );;
-  
+    --vp-home-hero-name-background: -webkit-linear-gradient(120deg,
+            var(--vp-c-brand-1),
+            var(--vp-c-brand-3));
+    ;
+
     --vp-home-hero-image-background-image: none;
     --vp-home-hero-image-filter: none;
     --vp-nav-bg-color: var(--vp-c-bg-soft);
+}
+
+.medium-zoom-overlay {
+    background-color: var(--vp-c-bg) !important;
+    z-index: 100;
+  }
+  
+  .medium-zoom-overlay ~ img {
+    z-index: 101;
+  }
+  
+  .medium-zoom--opened .medium-zoom-overlay {
+    opacity: 0.9 !important;
   }
