@@ -134,7 +134,7 @@ const urls = [
 ## 3. 部件字根
 字根总共 470 个，归类后 318 个字根。
 
-[![逸码字根图](/v20/v20-kbd.webp)](/v20/v20-kbd.webp)
+![逸码字根图](/v20/v20-kbd.webp)
 
 <a class="button is-small is-light" href="/v20/v20-kbd.pdf" target="_blank" download="逸码V20字根图矢量图.pdf">下载PDF高清字根图</a>
 
