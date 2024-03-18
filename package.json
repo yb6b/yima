@@ -26,6 +26,7 @@
     "preview": "vitepress preview src "
   },
   "dependencies": {
-    "@vueuse/core": "^10.9.0"
+    "@vueuse/core": "^10.9.0",
+    "canvas-confetti": "^1.9.2"
   }
 }
