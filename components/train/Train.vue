@@ -2,7 +2,6 @@
 import { shallowRef, watch, onMounted, inject, nextTick } from "vue";
 import { Schedule } from "./schedule";
 import { Card } from "./share";
-import { useLocalStorage } from "@vueuse/core";
 import confetti from "canvas-confetti";
 
 const p = defineProps<{

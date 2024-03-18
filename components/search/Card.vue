@@ -31,14 +31,14 @@ const unicode = computed(() => p.hanzi.charCodeAt(0).toString(16).toUpperCase())
                 <span :class="['kaiti-font', zigenFont, { 'round-bg': highlightStrokes.has(c) }]">
                     {{ c }}</span>
                 <rp>(</rp>
-                <rt class="font-mono uppercase text-blue-400">
+                <rt class="font-mono uppercase text-xl text-blue-400 dark:text-blue-200">
                     {{ keys[index] }}
                 </rt>
                 <rp>)</rp>
             </ruby>
         </div>
-        <div class="invisible justify-center group-hover:visible">
-            <div class="flex justify-around dark:opacity-55 opacity-100">
+        <div class="opacity-0 justify-center group-hover:opacity-100 duration-300 delay-100 transition-all">
+            <div class="flex justify-center dark:opacity-55 opacity-100">
                 <a :href="'https://zi.tools/zi/' + uriText" class="" target="_blank" rel="noreferrer" title="字统网查询">
                     <img :src=ZitongLogo alt="字统网" width="22" />
                 </a>
