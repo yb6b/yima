@@ -54,28 +54,52 @@ function checkNextItem(answer: string) {
     isFirstLearn.value = next.isFirst
     progress.value = thisSchedule.progress
 }
+
 </script>
 
 <template>
+    {{card}}
     <div
-        :class="['md:w-2/3 w-full shadow-sm my-12 pb-24 bg-opacity-10  rounded-md', { 'bg-red-700': !isCorrect, 'bg-slate-500': isCorrect }]">
+        :class="['md:w-2/3 w-full shadow-sm my-12 pb-24 bg-opacity-10 rounded-md', { 'bg-red-700': !isCorrect, 'bg-slate-500': isCorrect }]">
         <div class="flex justify-center mb-24">
             <progress class="progress w-full" :value="progress" :max="cards.length" />
         </div>
         <div class="flex justify-around mb-8">
-            <div :class="['text-6xl ', 'kaiti-font', fontClass, { 'text-red-400': !isCorrect }]">{{ card.name }}</div>
+
+            <div class="w-40 flex justify-center h-28 p-5 overflow-hidden">
+                <Transition enterActiveClass="animate__animated animate__bounceInLeft"
+                    leaveActiveClass="animate__animated animate__bounceOutRight"
+                    mode="out-in">
+                    <div :key="card.name"
+                        :class="['text-6xl animate__animated', 'kaiti-font', fontClass, { 'text-red-400': !isCorrect, 'animate__headShake': !isCorrect }]">
+                        {{ card.name }}</div>
+                </Transition>
+            </div>
+
+
+            <!-- <Transition :key="card.name" :name="isCorrect ? 'right' : 'left'">
+            </Transition> -->
+
             <div class="flex flex-col" v-if="'rel' in card || 'kind' in card">
+
                 <div class="flex tracking-widest flex-col opacity-70" v-if="'rel' in card">
+
                     <div class="text-gray-500 text-sm">
                         相关的字：
                     </div>
+
                     <div>
                         {{ card.rel }}
                     </div>
                 </div>
+
                 <div class=" tracking-widest pt-6 text-blue-600 dark:text-blue-300"
                     v-if="'kind' in card && card.kind == 'b'">
                     五个基础笔画
+                </div>
+                <div class=" tracking-widest pt-6 text-blue-600 dark:text-blue-300"
+                    v-if="'kind' in card && card.kind == 'eb'">
+                    25个二笔小码
                 </div>
             </div>
         </div>
@@ -91,3 +115,17 @@ function checkNextItem(answer: string) {
 
     <div class="text-gray-500">训练进度：{{ progress }} / {{ cards.length }}</div>
 </template>
+
+<style>
+.right-enter-active .left-enter-active {
+    animation: bounceInLeft 1s;
+}
+
+.right-leave-active {
+    animation: bounceOutRight 1s;
+}
+
+.left-leave-active {
+    animation: bounceOutLeft 1s;
+}
+</style>

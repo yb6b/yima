@@ -7,7 +7,7 @@ import { useMediumZoomProvider } from '../hooks'
 import { h } from 'vue'
 import './style.css'
 import './fonts.css'
-
+import './animate.css'
 
 export default {
   extends: DefaultTheme,
