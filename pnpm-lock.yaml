@@ -11,6 +11,9 @@ dependencies:
   canvas-confetti:
     specifier: ^1.9.2
     version: 1.9.2
+  supermemo:
+    specifier: ^2.0.17
+    version: 2.0.17
 
 devDependencies:
   '@types/node':
@@ -1609,6 +1612,11 @@ packages:
       pirates: 4.0.6
       ts-interface-checker: 0.1.13
     dev: true
+
+  /supermemo@2.0.17:
+    resolution: {integrity: sha512-c/BMAkG+IDYtAP1AR97DVU4x4gs8vfvLA4ejND7lHKdzjaAWwxixtcZjnQNfcyAKfZn2ovIYKJAGpTG45dr8ug==}
+    engines: {node: '>=10'}
+    dev: false
 
   /supports-preserve-symlinks-flag@1.0.0:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}

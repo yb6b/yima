@@ -16,6 +16,7 @@ const fontClass = inject('font')
 let thisSchedule: Schedule<Card>;
 const card = shallowRef<Card>({
     name: '',
+    key: '',
 })
 const progress = shallowRef(0)
 const isFirstLearn = shallowRef(true)
@@ -30,7 +31,7 @@ onMounted(() => {
     isFirstLearn.value = first.isFirst
     progress.value = thisSchedule.progress
     const element = document.getElementById('input_el')
-    element.focus()
+    element?.focus()
 })
 
 watch(userKeys, (newKeys) => {

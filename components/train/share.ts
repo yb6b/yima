@@ -5,15 +5,15 @@ export interface ZigenCard {
     name: string;
     key: string;
     rel: string;
-    kind?: 'b'|'eb'
+    kind?: 'b' | 'eb'
 }
 
 export interface ChaiCard {
     name: string,
+    /** 编码 */
+    key: string,
     /** 拆分 */
     comp?: string,
-    /** 编码 */
-    key?: string,
 }
 
 export type Card = ZigenCard | ChaiCard
@@ -32,7 +32,7 @@ export async function fetchJsonWithCache(url: string) {
         const json = await req.json()
         cache[url] = json
         return json
-        
+
     } catch (error) {
         if (error instanceof Error)
             alert(`无法下载或解析《${url}》文件：${error.cause}`)

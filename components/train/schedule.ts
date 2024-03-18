@@ -74,6 +74,11 @@ export class Schedule<T> {
     return this.first();
   }
 
+  public restart() {
+    this.record = Array.from({ length: this.items.length }, (_, i) => [-1, i])
+    this.saveLocal()
+    this.progress = 0
+  }
 
   /** 回答错误后 */
   public nextFail() {

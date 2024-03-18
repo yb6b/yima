@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@vueuse/core": "^10.9.0",
-    "canvas-confetti": "^1.9.2"
+    "canvas-confetti": "^1.9.2",
+    "supermemo": "^2.0.17"
   }
 }

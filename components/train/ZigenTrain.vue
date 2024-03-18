@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { provide, onMounted, shallowRef } from "vue";
-import { cache, type Card } from "./share";
-import { withBase } from 'vitepress'
-import Train from "./Train.vue";
+import { cache, fetchJsonWithCache, type Card } from "./share";
+import Train from "./TrainCard.vue";
 
 const p = defineProps<{
     /** 卡片组的名字 */
@@ -17,18 +16,13 @@ const p = defineProps<{
 
 provide("font", p.fontClass)
 
-const cards = shallowRef<Card[]>()
+const cards = shallowRef<Card[]>(cache[p.name])
 
 onMounted(async () => {
-    const cardsName = p.name
-    if (cardsName in cache)
-        return cards.value = cache[cardsName]
+    if (cards.value) return;
 
     try {
-        const req = await fetch(withBase(p.zigenJson))
-        const json = await req.json()
-        cache[cardsName] = json
-        return cards.value = json
+        return cards.value = await fetchJsonWithCache(p.zigenJson)
     } catch (error) {
         alert(`无法下载${p.zigenJson}文件：${error}`)
     }

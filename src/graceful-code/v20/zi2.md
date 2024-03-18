@@ -2,7 +2,7 @@
 aside: false
 ---
 <script setup>
-import Train from "@/train/SingleTrain.vue"
+import Train from "@/train/HanziTrain.vue"
 </script>
 # 逸码V20 常用 1000~2000 字练习
 

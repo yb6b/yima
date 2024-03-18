@@ -2,7 +2,7 @@
 /** 单字练习 */
 import { shallowRef, onMounted, provide } from "vue";
 import { ChaiCard, ZigenCard, cache, fetchJsonWithCache } from "./share";
-import Train from "./Train.vue";
+import Train from "./TrainCard.vue";
 
 const p = defineProps<{
   /** 卡片组的名字 */
