@@ -19,7 +19,6 @@ const p = defineProps<{
 
 provide("font", p.fontClass)
 
-const cards = shallowRef<ChaiCard[]>()
 
 let cardsName = p.name + '_single'
 const range = p.range
@@ -27,11 +26,12 @@ if (range) {
   cardsName += `_${range[0]}_${range[1]}`
 }
 
+const cards = shallowRef<ChaiCard[]>(cache[cardsName])
+
 onMounted(async () => {
   /** 初始化时候，要处理请求json数据、截断数据、补齐编码字段 */
 
-  if (cardsName in cache)
-    return cards.value = cache[cardsName]
+  if (cards.value) return;
 
   let chaifenCards: ChaiCard[] = await fetchJsonWithCache(p.chaiJson)
   if (range) {

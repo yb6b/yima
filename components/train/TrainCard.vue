@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { shallowRef, watch, onMounted, inject, nextTick } from "vue";
 import { Schedule } from "./schedule";
-import { Card } from "./share";
-import confetti from "canvas-confetti";
+import { Card, startConfette } from "./share";
+
 
 const p = defineProps<{
     /** 复习卡片的数据 */
@@ -23,16 +23,26 @@ const isFirstLearn = shallowRef(true)
 const isCorrect = shallowRef(true)
 const userKeys = shallowRef('')
 
-onMounted(() => {
-    /** 生成复习计划时，需要读取localStorage，所以要放到onMounted里执行 */
-    thisSchedule = new Schedule(p.cards, p.name)
+const readyForNewSchedule = () => {
     const first = thisSchedule.first()
     card.value = first.item
     isFirstLearn.value = first.isFirst
     progress.value = thisSchedule.progress
     const element = document.getElementById('input_el')
     element?.focus()
+}
+
+onMounted(() => {
+    /** 生成复习计划时，需要读取localStorage，所以要放到onMounted里执行 */
+    thisSchedule = new Schedule(p.cards, p.name)
+    readyForNewSchedule()
 })
+
+function restart() {
+    if (!confirm(`重置进度需要清空数据，无法撤回，您确定继续吗？`)) return;
+    thisSchedule.restart()
+    readyForNewSchedule()
+}
 
 watch(userKeys, (newKeys) => {
     // 多个编码没有打完就不提示错误
@@ -58,59 +68,20 @@ function checkNextItem(answer: string) {
 }
 
 const showConfetti = shallowRef(false)
-watch(progress, (newV, oldV) => {
-    if (newV === p.cards.length && newV > oldV)
+watch(progress, async (newV, oldV) => {
+    if (newV === p.cards.length && newV > oldV) {
         showConfetti.value = true
-})
-watch(showConfetti, async (v) => {
-    if (!v) return;
-    await nextTick();
-
-    var duration = 5000;
-    var animationEnd = Date.now() + duration;
-    var defaults = {
-        startVelocity: 30,
-        spread: 360,
-        ticks: 60,
-        zIndex: 0,
-        particleCount: 30,
-        shapes: [
-            confetti.shapeFromText({ text: '快', scalar: 7 }),
-            confetti.shapeFromText({ text: '强', scalar: 8 }),
-            confetti.shapeFromText({ text: '😆', scalar: 4 }),
-            confetti.shapeFromText({ text: '🎉', scalar: 5 }),
-            confetti.shapeFromText({ text: '👍', scalar: 5 }),
-        ],
-        scalar: 2,
-    };
-
-    function randomInRange(min, max) {
-        return Math.random() * (max - min) + min;
+        await nextTick()
+        startConfette()
     }
-
-    var interval = setInterval(function () {
-        var timeLeft = animationEnd - Date.now();
-
-        if (timeLeft <= 0) {
-            return clearInterval(interval);
-        }
-
-        var particleCount = 50 * (timeLeft / duration);
-        // since particles fall down, start a bit higher than random
-        confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } });
-        confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } });
-        confetti({
-            ...defaults, shapes: ['circle'],
-            particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
-        });
-    }, 250);
 })
+
 
 </script>
 
 <template>
     <div
-        :class="['md:w-2/3 w-full shadow-sm my-12 pb-24 bg-opacity-10 rounded-md', { 'bg-red-700': !isCorrect, 'bg-slate-500': isCorrect }]">
+        :class="['md:w-2/3 w-full shadow-sm my-12 pb-24 bg-opacity-10 rounded-md transition-colors', { 'bg-red-700': !isCorrect, 'bg-slate-500': isCorrect }]">
         <div class="flex justify-center mb-24">
             <progress class="progress w-full" :value="progress" :max="cards.length" />
         </div>
@@ -167,19 +138,8 @@ watch(showConfetti, async (v) => {
 
     </div>
 
-    <div class="text-gray-500">训练进度：{{ progress }} / {{ cards.length }}</div>
+    <div class="text-gray-500 flex justify-between">
+        <div>训练进度：{{ progress }} / {{ cards.length }}</div>
+        <button class="btn btn-ghost btn-sm" @click="_ => restart()">restart</button>
+    </div>
 </template>
-
-<style>
-.right-enter-active .left-enter-active {
-    animation: bounceInLeft 1s;
-}
-
-.right-leave-active {
-    animation: bounceOutRight 1s;
-}
-
-.left-leave-active {
-    animation: bounceOutLeft 1s;
-}
-</style>
