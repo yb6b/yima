@@ -86,48 +86,48 @@ watch(progress, async (newV, oldV) => {
             <progress class="progress w-full" :value="progress" :max="cards.length" />
         </div>
         <template v-if="!showConfetti">
-            <div class="flex justify-around mb-8">
+            <slot :card>
+                <div class="flex justify-around mb-8">
 
-                <div class="w-40 flex justify-center h-28 p-5 overflow-hidden">
-                    <Transition enterActiveClass="animate__animated animate__bounceInLeft"
-                        leaveActiveClass="animate__animated animate__bounceOutRight" mode="out-in">
-                        <div :key="card.name"
-                            :class="['text-6xl animate__animated', 'kaiti-font', fontClass, { 'text-red-400': !isCorrect, 'animate__headShake': !isCorrect }]">
-                            {{ card.name }}</div>
-                    </Transition>
-                </div>
+                    <div :key="card.name"
+                        :class="['text-6xl animate__animated', 'kaiti-font', fontClass, { 'text-red-400': !isCorrect, 'animate__headShake': !isCorrect }]">
+                        {{ card.name }}</div>
 
-                <div class="flex flex-col" v-if="'rel' in card || 'kind' in card">
+                    <div class="flex flex-col" v-if="'rel' in card || 'kind' in card">
 
-                    <div class="flex tracking-widest flex-col opacity-70" v-if="'rel' in card">
+                        <div class="flex tracking-widest flex-col opacity-70" v-if="'rel' in card">
 
-                        <div class="text-gray-500 text-sm">
-                            相关的字：
+                            <div class="text-gray-500 text-sm">
+                                相关的字：
+                            </div>
+
+                            <div>
+                                {{ card.rel }}
+                            </div>
                         </div>
 
-                        <div>
-                            {{ card.rel }}
+                        <div class=" tracking-widest pt-6 text-blue-600 dark:text-blue-300"
+                            v-if="'kind' in card && card.kind == 'b'">
+                            五个基础笔画
+                        </div>
+                        <div class=" tracking-widest pt-6 text-blue-600 dark:text-blue-300"
+                            v-if="'kind' in card && card.kind == 'eb'">
+                            25个二笔小码
                         </div>
                     </div>
-
-                    <div class=" tracking-widest pt-6 text-blue-600 dark:text-blue-300"
-                        v-if="'kind' in card && card.kind == 'b'">
-                        五个基础笔画
-                    </div>
-                    <div class=" tracking-widest pt-6 text-blue-600 dark:text-blue-300"
-                        v-if="'kind' in card && card.kind == 'eb'">
-                        25个二笔小码
-                    </div>
                 </div>
-            </div>
-            <div class="flex justify-center p-5">
-                <input id="input_el" type="text" placeholder="输入字根编码" v-model="userKeys"
-                    :class="['input w-half max-w-xs input-bordered text-center input-sm dark:bg-slate-800 bg-white', { 'input-error': !isCorrect }]" />
-            </div>
-            <div :class="['text-center', { 'opacity-0': !isFirstLearn }]">答案是 <b class="font-mono">{{ card.key }}</b>
-                <span :class="[fontClass]" v-if="'comp' in card">（{{ card.comp }}）</span>
-            </div>
+                <div class="flex justify-center p-5">
+                    <input id="input_el" type="text" placeholder="输入编码" v-model="userKeys"
+                        :class="['input w-half max-w-xs input-bordered text-center input-sm dark:bg-slate-800 bg-white', { 'input-error': !isCorrect }]" />
+                </div>
+                <div :class="['text-center', { 'opacity-0': !isFirstLearn }]">答案是 <b class="font-mono">{{ card.key
+                        }}</b>
+                    <span :class="[fontClass]" v-if="'comp' in card">（{{ card.comp }}）</span>
+                </div>
+            </slot>
         </template>
+
+
         <template v-else>
             <div class="p-10 text-6xl text-center font-bold text-orange-800 font-sans tracking-widest -rotate-6">
                 🎉恭喜完成练习!!</div>
@@ -140,6 +140,6 @@ watch(progress, async (newV, oldV) => {
 
     <div class="text-gray-500 flex justify-between">
         <div>训练进度：{{ progress }} / {{ cards.length }}</div>
-        <button class="btn btn-ghost btn-sm" @click="_ => restart()">restart</button>
+        <button class="btn btn-ghost btn-sm font-light" @click="_ => restart()">restart</button>
     </div>
 </template>

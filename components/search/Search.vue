@@ -11,6 +11,8 @@ const p = defineProps<{
     hanziDict: Record<string, string | Array<string>>
     /** 字根到按键的映射 */
     compDict?: Record<string, string>
+    /** 自定义字根转编码时的规则 */
+    dasm?: (comp: string[], compDict: Record<string, string>) => string
 }>()
 
 const urlSearchParams = useUrlSearchParams()
@@ -37,7 +39,7 @@ const textToResult = (text: string): Result => [...text]
     .filter(z => z in p.hanziDict)
     .map(zi => {
         const comps = [...p.hanziDict[zi]]
-        const keys = comps.map(c => p.compDict[c])
+        const keys = p.dasm ? [...p.dasm(comps, p.compDict)] : comps.map(c => p.compDict[c])
         return [zi, comps, keys] as const
     })
 

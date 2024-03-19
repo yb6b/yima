@@ -13,11 +13,13 @@ const p = defineProps<{
     compFont?: string
     /** 方案的ID */
     id: string
+    /** 自定义字根转编码时的规则 */
+    dasm?: (comp: string[], compDict: Record<string, string>) => string
 }>()
 
 provide('font', p.compFont)
 // 一丨丿丶乙
-provide('high', p.id.includes('easy')?'':'⼀⼂⺂⼁⼃')
+provide('high', p.id.includes('easy') ? '' : '⼀⼂⺂⼁⼃')
 const schemaData = shallowRef<{
     compDict: Record<string, string>,
     hanziDict: Record<string, string | Array<string>>
@@ -42,5 +44,5 @@ onMounted(async () => {
 
 <template>
     <div class="text-gray-600" v-if="!schemaData">正在加载拆分数据……</div>
-    <Search v-else :compFont :hanziDict="schemaData.hanziDict" :compDict="schemaData.compDict" />
+    <Search v-else :hanziDict="schemaData.hanziDict" :compDict="schemaData.compDict" />
 </template>
