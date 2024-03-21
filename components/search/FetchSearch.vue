@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { onMounted, shallowRef, provide } from "vue";
 import Search from "./Search.vue";
-import { cache } from "./share";
+import { cache, ChaiCard, ZigenCard } from "./share";
 import { fetchJsonWithCache } from "../train/share";
 
 const p = defineProps<{
-    /** 汉字到拆分表的JSON文件名 */
+    /** 汉字信息的JSON文件的名字 */
     hanziJson: string
-    /** 字根到按键的JSON文件名 */
+    /** 字根信息的JSON文件的名字 */
     compJson?: string
     /** 字根字体的class名字 */
     compFont?: string
@@ -21,8 +21,8 @@ provide('font', p.compFont)
 // 一丨丿丶乙
 provide('high', p.id.includes('easy') ? '' : '⼀⼂⺂⼁⼃')
 const schemaData = shallowRef<{
-    compDict: Record<string, string>,
-    hanziDict: Record<string, string | Array<string>>
+    compDict: Record<string, ZigenCard>,
+    hanziDict: Record<string, ChaiCard>
 }>()
 
 onMounted(async () => {
@@ -31,11 +31,11 @@ onMounted(async () => {
         schemaData.value = cache[p.id]
         return
     }
-    const hanziJson = await fetchJsonWithCache(p.hanziJson)
-    const compJson = p.compJson && await fetchJsonWithCache(p.compJson)
+    const hanziJson = await fetchJsonWithCache(p.hanziJson) as ChaiCard[]
+    const compJson = p.compJson ? (await fetchJsonWithCache(p.compJson) as ZigenCard[]) : []
     const result = {
-        compDict: Object.fromEntries(compJson.map(v => [v.name, v.key])),
-        hanziDict: Object.fromEntries(hanziJson.map(v => [v.name, v.comp])),
+        compDict: Object.fromEntries(compJson.map(v => [v.name, v])),
+        hanziDict: Object.fromEntries(hanziJson.map(v => [v.name, v])),
     }
     cache[p.id] = result
     schemaData.value = result
@@ -44,5 +44,5 @@ onMounted(async () => {
 
 <template>
     <div class="text-gray-600" v-if="!schemaData">正在加载拆分数据……</div>
-    <Search v-else :hanziDict="schemaData.hanziDict" :compDict="schemaData.compDict" />
+    <Search v-else :hanziDict="schemaData.hanziDict" :compDict="schemaData.compDict" :dasm />
 </template>

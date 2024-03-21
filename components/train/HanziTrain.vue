@@ -15,6 +15,8 @@ const p = defineProps<{
   zigenJson?: string,
   /** 字根的字体CSS名称 */
   fontClass?: string
+  /** 自定义字根转编码时的规则 */
+  dasm?: (comp: string[], compDict: Record<string, string>) => string
 }>()
 
 provide("font", p.fontClass)
@@ -42,7 +44,7 @@ onMounted(async () => {
   if (p.zigenJson) {
 
     const zigenCard = await fetchJsonWithCache(p.zigenJson) as ZigenCard[]
-    const zigenKeyMap = new Map(zigenCard.map(v => [v.name, v.key]))
+    const zigenKeyMap = Object.fromEntries(zigenCard.map(v => [v.name, v.key]))
 
     for (const e of chaifenCards) {
       if (e.key) continue
@@ -52,7 +54,7 @@ onMounted(async () => {
         throw new Error(msg)
       }
 
-      e.key = [...e.comp].map(gen => zigenKeyMap.get(gen) || '').join('')
+      e.key = p.dasm ? p.dasm([...e.comp], zigenKeyMap) : [...e.comp].map(gen => zigenKeyMap[gen] || '').join('')
     }
   }
 

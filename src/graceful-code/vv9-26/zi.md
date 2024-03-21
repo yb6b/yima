@@ -2,7 +2,7 @@
 aside: false
 ---
 <script setup>
-    import Train from "@/train/HanziTrain.vue"
+import Train from "@/train/HanziTrain.vue"
 </script>
 # 逸码 VV9 · 26键 常用 1000 字练习
 

@@ -122,7 +122,7 @@ watch(progress, async (newV, oldV) => {
                 </div>
                 <div :class="['text-center', { 'opacity-0': !isFirstLearn }]">答案是 <b class="font-mono">{{ card.key
                         }}</b>
-                    <span :class="[fontClass]" v-if="'comp' in card">（{{ card.comp }}）</span>
+                    <span :class="['kaiti-font', fontClass]" v-if="'comp' in card">（{{ card.comp }}）</span>
                 </div>
             </slot>
         </template>

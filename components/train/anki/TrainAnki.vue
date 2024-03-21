@@ -59,6 +59,11 @@ watch(progress, async (newV, oldV) => {
     }
 })
 
+const cusRestart = () => {
+    if (!confirm(`重置进度需要清空数据，无法撤回，您确定继续吗？`)) return;
+    restart()
+}
+
 </script>
 
 <template>
@@ -81,7 +86,7 @@ watch(progress, async (newV, oldV) => {
                     :class="['input w-half max-w-xs input-bordered text-center input-sm dark:bg-slate-800 bg-white', { 'input-error': !isCorrect }]" />
             </div>
             <div :class="['text-center', { 'opacity-0': isCorrect }]">答案是 <b class="font-mono">{{ card.key }}</b>
-                <span :class="[fontClass]" v-if="'comp' in card">（{{ card.comp }}）</span>
+                <span :class="['kaiti-font', fontClass]" v-if="'comp' in card">（{{ card.comp }}）</span>
             </div>
         </template>
 
@@ -97,6 +102,6 @@ watch(progress, async (newV, oldV) => {
 
     <div class="text-gray-500 flex justify-between">
         <div class="text-gray-500">训练进度： {{ progress.meet }} / {{ cards.length }}</div>
-        <button class="btn btn-ghost btn-sm font-light" @click="_ => restart()">restart</button>
+        <button class="btn btn-ghost btn-sm font-light" @click=" cusRestart()">restart</button>
     </div>
 </template>

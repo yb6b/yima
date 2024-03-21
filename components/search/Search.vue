@@ -5,12 +5,12 @@ import { watchThrottled, useUrlSearchParams } from "@vueuse/core";
 import SearchAsync from "./SearchAsync.vue";
 import SearchHanzi from "./SearchHanzi.vue";
 import SearchHelp from "./SearchHelp.vue";
-import { type Result } from "./share";
+import type { Result, ChaiCard, ZigenCard } from "./share";
 const p = defineProps<{
     /** 汉字到拆分表的映射 */
-    hanziDict: Record<string, string | Array<string>>
+    hanziDict: Record<string, ChaiCard>
     /** 字根到按键的映射 */
-    compDict?: Record<string, string>
+    compDict?: Record<string, ZigenCard>
     /** 自定义字根转编码时的规则 */
     dasm?: (comp: string[], compDict: Record<string, string>) => string
 }>()
@@ -38,9 +38,10 @@ watchThrottled(userInput, () => {
 const textToResult = (text: string): Result => [...text]
     .filter(z => z in p.hanziDict)
     .map(zi => {
-        const comps = [...p.hanziDict[zi]]
-        const keys = p.dasm ? [...p.dasm(comps, p.compDict)] : comps.map(c => p.compDict[c])
-        return [zi, comps, keys] as const
+        const data = p.hanziDict[zi]
+        const comps = [...data.comp]
+        const keys = 'key' in data ? [...data.key] : comps.map(c => p.compDict[c].key)
+        return [zi, comps, keys]
     })
 
 function searchHanziHandler() {
