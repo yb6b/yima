@@ -18,6 +18,7 @@ export function useReview<T>(name: string, cards: T[]) {
         storageRef.value = emptyRecord()
         progress.value = 0
         isFirst.value = true
+        card.value = cards[0]
     }
 
     const maxIndex = cards.length - 1
