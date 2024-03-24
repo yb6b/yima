@@ -8,6 +8,11 @@ export function useReview<T>(name: string, cards: T[]) {
 
     const emptyRecord = () => Array.from({ length: cards.length }, (_, i) => [-1, i] as Record)
     const storageRef = useLocalStorage<Record[]>(`yima_${name}_records`, emptyRecord)
+    if (storageRef.value.length < cards.length) {
+        for (let i = storageRef.value.length; i < cards.length; i++) {
+            storageRef.value.push([-1, i])
+        }
+    }
 
     const scanProgress = () => storageRef.value.reduce((p, c) => p + Number(c[0] > 1), 0)
     const progress = shallowRef(scanProgress())
@@ -27,7 +32,7 @@ export function useReview<T>(name: string, cards: T[]) {
 
     const answer = (correct: boolean) => {
         if (!correct) {
-            if (storageRef.value[0][0] > 2)
+            if (storageRef.value[0][0] > 1)
                 progress.value -= 1
             storageRef.value[0][0] = -1
             isFirst.value = true
@@ -36,7 +41,7 @@ export function useReview<T>(name: string, cards: T[]) {
 
         const firstRecord = storageRef.value[0]
         const firstCount = ++firstRecord[0]
-        if (firstCount > 2) {
+        if (firstCount === 2) {
             progress.value += 1
         }
 

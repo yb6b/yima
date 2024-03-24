@@ -51,8 +51,10 @@ watch(userKeys, (newKeys) => {
 
 const showConfetti = shallowRef(false)
 const cardLength = p.cards.length
+let alreadyShowConfetti = false
 watch(progress, async (newV, oldV) => {
-    if (newV === cardLength && newV > oldV) {
+    if (!alreadyShowConfetti && newV === cardLength && newV > oldV) {
+        alreadyShowConfetti = true
         showConfetti.value = true
         await nextTick()
         startConfette()
