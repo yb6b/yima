@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { shallowRef, watch, onMounted, inject, nextTick } from "vue";
-import { Schedule } from "./schedule";
+
+import { useReview } from "./useReview";
 import { Card, startConfette } from "./share";
 
 
@@ -12,36 +13,24 @@ const p = defineProps<{
 }>()
 
 const fontClass = inject('font')
+const { card, restart, answer, progress, isFirst } = useReview(p.name, p.cards)
 
-let thisSchedule: Schedule<Card>;
-const card = shallowRef<Card>({
-    name: '',
-    key: '',
-})
-const progress = shallowRef(0)
-const isFirstLearn = shallowRef(true)
 const isCorrect = shallowRef(true)
 const userKeys = shallowRef('')
 
-const readyForNewSchedule = () => {
-    const first = thisSchedule.first()
-    card.value = first.item
-    isFirstLearn.value = first.isFirst
-    progress.value = thisSchedule.progress
+const focusInputElement = () => {
     const element = document.getElementById('input_el')
     element?.focus()
 }
 
 onMounted(() => {
-    /** 生成复习计划时，需要读取localStorage，所以要放到onMounted里执行 */
-    thisSchedule = new Schedule(p.cards, p.name)
-    readyForNewSchedule()
+    focusInputElement()
 })
 
-function restart() {
+function cusRestart() {
     if (!confirm(`重置进度需要清空数据，无法撤回，您确定继续吗？`)) return;
-    thisSchedule.restart()
-    readyForNewSchedule()
+    restart()
+    focusInputElement()
 }
 
 watch(userKeys, (newKeys) => {
@@ -49,27 +38,21 @@ watch(userKeys, (newKeys) => {
     if (newKeys.length < card.value.key.length)
         return
     // 检查回答
-    checkNextItem(newKeys)
+    if (newKeys === card.value.key) {
+        answer(true)
+        isCorrect.value = true
+    } else {
+        answer(false)
+        isCorrect.value = false
+    }
     userKeys.value = ''
 })
 
-function checkNextItem(answer: string) {
-    let next: { item: Card; isFirst: boolean };
-    if (answer === card.value.key) {
-        next = thisSchedule.nextSuccess();
-        isCorrect.value = true
-    } else {
-        next = thisSchedule.nextFail();
-        isCorrect.value = false
-    }
-    card.value = next.item
-    isFirstLearn.value = next.isFirst
-    progress.value = thisSchedule.progress
-}
 
 const showConfetti = shallowRef(false)
+const cardLength = p.cards.length
 watch(progress, async (newV, oldV) => {
-    if (newV === p.cards.length && newV > oldV) {
+    if (newV === cardLength && newV > oldV) {
         showConfetti.value = true
         await nextTick()
         startConfette()
@@ -120,7 +103,7 @@ watch(progress, async (newV, oldV) => {
                     <input id="input_el" type="text" placeholder="输入编码" v-model="userKeys"
                         :class="['input w-half max-w-xs input-bordered text-center input-sm dark:bg-slate-800 bg-white', { 'input-error': !isCorrect }]" />
                 </div>
-                <div :class="['text-center', { 'opacity-0': !isFirstLearn }]">答案是 <b class="font-mono">{{ card.key
+                <div :class="['text-center', { 'opacity-0': !isFirst }]">答案是 <b class="font-mono">{{ card.key
                         }}</b>
                     <span :class="['kaiti-font', fontClass]" v-if="'comp' in card">（{{ card.comp }}）</span>
                 </div>
@@ -140,6 +123,6 @@ watch(progress, async (newV, oldV) => {
 
     <div class="text-gray-500 flex justify-between">
         <div>训练进度：{{ progress }} / {{ cards.length }}</div>
-        <button class="btn btn-ghost btn-sm font-light" @click="_ => restart()">restart</button>
+        <button class="btn btn-ghost btn-sm font-light" @click="_ => cusRestart()">restart</button>
     </div>
 </template>
