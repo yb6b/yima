@@ -13,6 +13,13 @@ export function useReview<T>(name: string, cards: T[]) {
             storageRef.value.push([-1, i])
         }
     }
+    storageRef.value.sort((a, b) => {
+        if (a[0] === 8 && b[0] < 8)
+            return 1
+        if (b[0] === 8 && a[0] < 8)
+            return -1
+        return 0
+    })
 
     const scanProgress = () => storageRef.value.reduce((p, c) => p + Number(c[0] > 1), 0)
     const progress = shallowRef(scanProgress())
