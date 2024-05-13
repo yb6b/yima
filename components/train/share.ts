@@ -1,6 +1,8 @@
 import { withBase } from "vitepress";
 
 export const cache: Record<string, any> = {}
+const fetchCache: Record<string, any> = {}
+
 
 export interface ZigenCard {
     /** 字根用字 */
@@ -34,8 +36,8 @@ export type HanziCardMap = Map<string, HanziCard>
 export type ZigenCardMap = Map<string, ZigenCard>
 
 export async function fetchJsonWithCache(url: string) {
-    if (url in cache)
-        return cache[url]
+    if (url in fetchCache)
+        return fetchCache[url]
 
     let urlFixed = url
     if (url[0] === '/') {
@@ -45,7 +47,7 @@ export async function fetchJsonWithCache(url: string) {
     try {
         const req = await fetch(urlFixed)
         const json = await req.json()
-        cache[url] = json
+        fetchCache[url] = json
         return json
 
     } catch (error) {

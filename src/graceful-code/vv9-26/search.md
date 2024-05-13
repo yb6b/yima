@@ -8,4 +8,4 @@ import {high} from "../high.ts"
 
 # 逸码VV9 · 26键 拆分反查
 
-<Search id="vv9-26" :high/>
+<Search id="vv9-26" :high :noZigenJson zigenFont='kaiti-yima' />

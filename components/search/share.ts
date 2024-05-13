@@ -2,7 +2,7 @@ export * from '../train/share'
 import { HanziCard, ZigenCardMap, HanziCardMap, fetchJsonWithCache } from "../train/share";
 import { useRoute } from "vitepress";
 // 用于缓存四角号码数据
-export let cache: Record<string, object> = {}
+export let cache: Record<string, any> = {}
 
 export interface ZigenAndKey {
     zigen: string

@@ -8,4 +8,4 @@ import {high} from "./high.ts"
 
 # 易码拆分反查
 
-<Search  zigenFont="outi-yima" :high />
+<Search :high />

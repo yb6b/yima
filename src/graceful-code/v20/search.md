@@ -8,4 +8,4 @@ aside: false
 
 # 逸码V20 拆分反查
 
-<Search  zigenFont="kaiti-yima" id="v20" :high/>
+<Search zigenFont="kaiti-yima" id="v20" :high/>

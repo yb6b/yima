@@ -124,7 +124,7 @@ export function supermemo<T extends SmCard>(card: T, grade: SmGrade): T {
         let delayDays = msToDay(card.due - today)
         if (delayDays < 0)
             delayDays = 0
-        const repetitionDays = a * (spanDays + delayDays / card.difficulty)
+        const repetitionDays = a * (spanDays + delayDays / card.difficulty!)
         console.log(`review after ${Math.round(repetitionDays)} later.`);
         const due = today + dayToMs(repetitionDays)
         const difficulty = 1 << (3 - grade)
@@ -146,7 +146,7 @@ export function supermemo<T extends SmCard>(card: T, grade: SmGrade): T {
             ease = 2.5
         const a = ease * 1.4
         const spanDays = msToDay(now - card.last) + 1
-        const repetitionDays = a * (spanDays + card.lastSpan * 2)
+        const repetitionDays = a * (spanDays + card.lastSpan! * 2)
         console.log(`review after ${Math.round(repetitionDays)} later.`);
         const due = thisMorningTimsStamp + dayToMs(repetitionDays)
         return {

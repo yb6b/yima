@@ -3,7 +3,7 @@ import { shallowRef } from 'vue'
 
 type Record = [count: number, index: number]
 
-export function useReview<T>(name: string, cards: T[]) {
+export function useReview<T>(name: string, cards: readonly T[]) {
     if (cards.length < 100) throw new Error(`卡片至少100张：${cards.length}`);
 
     const emptyRecord = () => Array.from({ length: cards.length }, (_, i) => [-1, i] as Record)

@@ -13,7 +13,7 @@ const p = defineProps<{
     data: ZigenAndKeyArray
 }>()
 
-const zigenFont = inject('font') as string
+const zigenFont = inject('font') || 'outi-yima' as string
 const highlightStrokes = inject('high') as Set<string>
 
 const uriText = computed(() => encodeURIComponent(p.name))

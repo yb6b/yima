@@ -24,7 +24,7 @@ const p = defineProps<{
     id?: string
     /** 需要高亮显示的字根 */
     high?: string
-    /** 重定义 字根和它编码 */
+    /** 重定义 字根和它编码, 主要给奕码用 */
     reformat?: ReformatHandler
 }>()
 
