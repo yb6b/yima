@@ -1,17 +1,14 @@
 <script setup lang="ts">
 import { onMounted, shallowRef, computed } from "vue";
 import Card from "./Card.vue";
-import { cache, Result } from "./share";
-import { withBase } from "vitepress";
+import { cache, fetchJsonWithCache, SearchCardsPropsArray, prehandleJson } from "./share";
 const p = defineProps<{
     /** 需要请求的json的路径，注意要以 / 开头 */
     json: string,
-    /** 数据的类型名字，不能用__proto__ */
+    /** 数据的标题，不能用__proto__ */
     title: string,
-    /** 预处理json数据 */
-    prehandleJson?: (json: object) => object,
     /** 有了json数据后，生成查询的结果列表 */
-    handler: (json: object, text: string) => Result
+    handler: (json: object, text: string) => SearchCardsPropsArray
     /** 要查询的字符 */
     text: string[]
 }>()
@@ -21,16 +18,11 @@ const data = shallowRef(cache[p.title])
 onMounted(async () => {
     const title = p.title
     if (title in cache) return;
-    try {
-        const req = await fetch(withBase(p.json))
-        let json = await req.json()
-        if (p.prehandleJson)
-            json = p.prehandleJson(json)
-        cache[title] = json
-        data.value = json
-    } catch (error) {
-        alert(`无法加载《${p.json}》文件：${error}`)
-    }
+    let json = await fetchJsonWithCache(p.json)
+    if (title === '四角')
+        json = prehandleJson(json)
+    cache[title] = json
+    data.value = json
 })
 
 const result = computed(() => {
@@ -50,7 +42,7 @@ const result = computed(() => {
             <span class="text-sm">（共 {{ result.length }} 条）</span>
         </h3>
         <div class="flex justify-center flex-wrap my-8">
-            <Card v-for="r of result" :key="r[0]" :hanzi="r[0]" :comp="r[1]" :keys="r[2]" />
+            <Card v-for="r of result" :key="r.zi" :name="r.zi" :data="r.data" />
         </div>
     </template>
 </template>

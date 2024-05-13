@@ -2,7 +2,8 @@
 import { shallowRef, watch, onMounted, inject, nextTick } from "vue";
 
 import { useAnki } from "./useAnki";
-import { Card, startConfette } from "../share";
+import { Card } from "../share";
+import { startConfette } from "../startConfette";
 
 
 const p = defineProps<{
@@ -76,7 +77,7 @@ const cusRestart = () => {
             <div class="flex justify-around mb-8">
 
                 <div :key="card.name"
-                    :class="['text-6xl animate__animated', 'kaiti-font', { 'text-red-400': !isCorrect, 'animate__headShake': !isCorrect }]">
+                    :class="['text-6xl animate__animated', 'kaiti-yima', { 'text-red-400': !isCorrect, 'animate__headShake': !isCorrect }]">
                     {{ card.name }}</div>
 
 
@@ -86,7 +87,7 @@ const cusRestart = () => {
                     :class="['input w-half max-w-xs input-bordered text-center input-sm dark:bg-slate-800 bg-white', { 'input-error': !isCorrect }]" />
             </div>
             <div :class="['text-center', { 'opacity-0': isCorrect }]">答案是 <b class="font-mono">{{ card.key }}</b>
-                <span :class="['kaiti-font', fontClass]" v-if="'comp' in card">（{{ card.comp }}）</span>
+                <span :class="['kaiti', fontClass]" v-if="'comp' in card">（{{ card.comp }}）</span>
             </div>
         </template>
 

@@ -8,11 +8,16 @@ export function useReview<T>(name: string, cards: T[]) {
 
     const emptyRecord = () => Array.from({ length: cards.length }, (_, i) => [-1, i] as Record)
     const storageRef = useLocalStorage<Record[]>(`yima_${name}_records`, emptyRecord)
-    if (storageRef.value.length < cards.length) {
-        for (let i = storageRef.value.length; i < cards.length; i++) {
+
+    const cardLength = cards.length
+    if (storageRef.value.length < cardLength) {
+        for (let i = storageRef.value.length; i < cardLength; i++) {
             storageRef.value.push([-1, i])
         }
+    } else if (storageRef.value.length > cardLength) {
+        storageRef.value = storageRef.value.filter(v => v[1] < cardLength)
     }
+
     storageRef.value.sort((a, b) => {
         if (a[0] === 8 && b[0] < 8)
             return 1

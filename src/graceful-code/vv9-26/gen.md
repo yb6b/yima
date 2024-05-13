@@ -7,4 +7,4 @@ import Train from "@/train/ZigenTrain.vue"
 
 # 逸码VV9·26键字根练习
 
-<Train name="vv9_26_zigen" fontClass="kaiti-font" zigenJson="/vv9-26/zigen.json" />
+<Train name="vv9_26_zigen" fontClass="kaiti-yima" zigenJson="/vv9-26/zigen.json" />

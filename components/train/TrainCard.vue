@@ -2,7 +2,8 @@
 import { shallowRef, watch, onMounted, inject, nextTick } from "vue";
 
 import { useReview } from "./useReview";
-import { Card, startConfette } from "./share";
+import { Card } from "./share";
+import { startConfette } from "./startConfette";
 
 
 const p = defineProps<{
@@ -75,7 +76,7 @@ watch(progress, async (newV, oldV) => {
                 <div class="flex justify-around mb-8">
 
                     <div :key="card.name"
-                        :class="['text-6xl animate__animated', 'kaiti-font', fontClass, { 'text-red-400': !isCorrect, 'animate__headShake': !isCorrect }]">
+                        :class="['text-6xl animate__animated', 'kaiti-yima', fontClass, { 'text-red-400': !isCorrect, 'animate__headShake': !isCorrect }]">
                         {{ card.name }}</div>
 
                     <div class="flex flex-col" v-if="'rel' in card || 'kind' in card">
@@ -107,7 +108,7 @@ watch(progress, async (newV, oldV) => {
                 </div>
                 <div :class="['text-center', { 'opacity-0': !isFirst }]">答案是 <b class="font-mono">{{ card.key
                         }}</b>
-                    <span :class="['kaiti-font', fontClass]" v-if="'comp' in card">（{{ card.comp }}）</span>
+                    <span :class="['kaiti-yima', fontClass]" v-if="'comp' in card">（{{ card.comp }}）</span>
                 </div>
             </slot>
         </template>

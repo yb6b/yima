@@ -5,21 +5,27 @@ import { watchThrottled, useUrlSearchParams } from "@vueuse/core";
 import SearchAsync from "./SearchAsync.vue";
 import SearchHanzi from "./SearchHanzi.vue";
 import SearchHelp from "./SearchHelp.vue";
-import type { Result, ChaiCard, ZigenCard } from "./share";
+import type { HanziCardMap, ZigenCardMap, ReformatHandler, SearchCardsPropsArray } from "./share";
+import { textToCardsProps } from "./share";
 const p = defineProps<{
     /** 汉字到拆分表的映射 */
-    hanziDict: Record<string, ChaiCard>
-    /** 字根到按键的映射 */
-    compDict?: Record<string, ZigenCard>
-    /** 自定义字根转编码时的规则 */
-    dasm?: (comp: string[], compDict: Record<string, string>) => string
+    hanziMap: HanziCardMap
+    /** 字根到按键的映射，  
+     * 汉字的拆分表可能含有编码信息，这时候就不需要zigenMap了 */
+    zigenMap?: ZigenCardMap
+    /** 重定义 字根和它编码 */
+    reformat?: ReformatHandler
 }>()
+
+const customTextToCardsProps = (text: string) => textToCardsProps(text, p.hanziMap, p.zigenMap, p.reformat)
 
 const urlSearchParams = useUrlSearchParams()
 const userInput = shallowRef(urlSearchParams?.q || '')
-const searchPatterns = shallowRef<string[]>()
+const searchPatterns = shallowRef<string[]>([])
 /** 反查的类型：字、拼音、四角(笔画)、空类型 */
 const kind = shallowRef<'z' | 'p' | 'b' | ''>()
+
+// 推断用户输入的类型
 watchThrottled(userInput, () => {
     const user = userInput.value as string
     urlSearchParams.q = user
@@ -35,46 +41,14 @@ watchThrottled(userInput, () => {
     }
 }, { throttle: 300, immediate: true })
 
-const textToResult = (text: string): Result => [...text]
-    .filter(z => z in p.hanziDict)
-    .map(zi => {
-        const data = p.hanziDict[zi]
-        const comps = [...data.comp]
-        const keys = 'key' in data ? [...data.key] : comps.map(c => p.compDict[c].key)
-        return [zi, comps, keys]
-    })
 
-function searchHanziHandler() {
-    const text = searchPatterns.value.join('')
-    return textToResult(text)
-}
+const searchHanzi = () => customTextToCardsProps(searchPatterns.value.join(''))
 
-function handler(json: object, text: string) {
-    if (!(text in json))
-        return []
-    return textToResult(json[text])
-}
+const handler = (json: any, text: string): SearchCardsPropsArray => (text in json) ? customTextToCardsProps(json[text] as string) : []
 
-function prehandleJson(json: object) {
-    const result = {}
-    for (const [k, v] of Object.entries(json)) {
-        result[k] = v
-        if (k.length > 4) {
-            const tempKey = k.slice(0, 4)
-            if (tempKey in result) {
-                result[tempKey] += v
-            } else {
-                result[tempKey] = v
-            }
-        }
-    }
-    return result
-}
 </script>
 
 <template>
-
-
     <label class="input input-bordered bg-gray-100 dark:bg-slate-800 flex items-center gap-2 mt-8">
         <input type="text" class="grow" placeholder="查询的文本 / 全拼 / 四角号码 / 笔画" v-model="userInput" />
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4 opacity-70">
@@ -89,12 +63,10 @@ function prehandleJson(json: object) {
     </div>
 
     <div v-if="kind === ''" class="opacity-40 text-center p-9 tracking-widest">从上方搜索条开始反查吧!</div>
-    <SearchHanzi v-else-if="kind === 'z'" :result="searchHanziHandler()" />
+    <SearchHanzi v-else-if="kind === 'z'" :result="searchHanzi()" />
     <SearchAsync v-else-if="kind === 'p'" title="拼音" json="/data/pinyin.json" :handler :text="searchPatterns" />
     <template v-else>
         <SearchAsync title="笔划" json="/data/bihua.json" :handler :text="searchPatterns" />
-        <SearchAsync title="四角" json="/data/sijiao.json" :handler :text="searchPatterns" :prehandleJson />
+        <SearchAsync title="四角" json="/data/sijiao.json" :handler :text="searchPatterns" />
     </template>
-
-
 </template>

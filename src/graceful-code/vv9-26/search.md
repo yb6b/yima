@@ -3,8 +3,9 @@ aside: false
 ---
 <script setup>
 import Search from "@/search/FetchSearch.vue"
+import {high} from "../high.ts"
 </script>
 
 # 逸码VV9 · 26键 拆分反查
 
-<Search hanziJson="/vv9-26/chaifen.json" compJson="/vv9-26/zigen.json" id="vv9-26" />
+<Search id="vv9-26" :high/>

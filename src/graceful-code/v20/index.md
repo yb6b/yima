@@ -64,27 +64,27 @@ const urls = [
 - 笔顺依据:《[GF 0023 — 2020 通用规范汉字笔顺规范](http://www.moe.gov.cn/jyb_sjzl/ziliao/A19/202103/t20210318_520473.html)》
 - 字频依据：单单字频 20190101
 - 基本笔形编码：
-  -  大码元集合笔形编码为 中日韩统一表意文字 （<span class="kaiti-font">一丨丿丶乛</span>）
-  -  小码元集合笔形编码为 康熙部首（<span class="kaiti-font">⼀⼁⼃⼂⺂</span>）
+  -  大码元集合笔形编码为 中日韩统一表意文字 （<span class="kaiti-yima">一丨丿丶乛</span>）
+  -  小码元集合笔形编码为 康熙部首（<span class="kaiti-yima">⼀⼁⼃⼂⺂</span>）
 
 ### 2.2 拆字规则
 
 1. **从上到下**：一个字从上到下拆分部件。
 **释义**：这里定义的是所取字根在字中所处的位置。
-**示例**：【算】拆分为 <span class="kaiti-font">⺮目廾</span>。
+**示例**：【算】拆分为 <span class="kaiti-yima">⺮目廾</span>。
 2. **从左到右**：一个字从左到右拆分部件。
 **释义**：这里定义的是所取字根在字中所处的位置
-**示例**：【作】拆分为 <span class="kaiti-font">亻乍</span>。
+**示例**：【作】拆分为 <span class="kaiti-yima">亻乍</span>。
 3. **取大优先**.：优先取大字根。（怎么定义大）
 **释义**：拆分出来的字根要尽可能大，即“再添一个笔画，便不能构成笔画更多的字根”为限度。
-**示例**：【章】拆分为 <span class="kaiti-font">音十</span>。
+**示例**：【章】拆分为 <span class="kaiti-yima">音十</span>。
 4. **相交不拆**：字根如与其它笔画相交，则不取
 **释义**：相交不拆，字根如果与其它笔画相交，则此字根即被破坏而不可取。
 
 ### 2.3 编码规则
 逸码码元分为两个码元集合：
 
-* 小码元集合：`eruio` (<span class="kaiti-font">一丨丿丶⺂</span>)
+* 小码元集合：`eruio` (<span class="kaiti-yima">一丨丿丶⺂</span>)
 * 大码元集合：余下 21 个字母（其余字根）
 
 逸码有三条编码规则：
@@ -101,35 +101,35 @@ const urls = [
 
 **示例**
 * **作**：编码是 `jz`，分别指：
-  1. `j` <span class="kaiti-font">亻</span>
-  2. `z` <span class="kaiti-font">乍 </span>
+  1. `j` <span class="kaiti-yima">亻</span>
+  2. `z` <span class="kaiti-yima">乍 </span>
 * **忽**：编码是 `jlru`，分别指：
-  1. `j` <span class="kaiti-font">勿</span>
-  2. `l` <span class="kaiti-font">心</span>
-  3. `r` <span class="kaiti-font">丶</span>（心的第一笔）
-  4. `u` <span class="kaiti-font">乚</span>（心的第二笔）
+  1. `j` <span class="kaiti-yima">勿</span>
+  2. `l` <span class="kaiti-yima">心</span>
+  3. `r` <span class="kaiti-yima">丶</span>（心的第一笔）
+  4. `u` <span class="kaiti-yima">乚</span>（心的第二笔）
 * **持**：编码是 `glei`，分别指：
-  1. `g` <span class="kaiti-font">扌</span>
-  2. `l` <span class="kaiti-font">土</span>
-  3. `e` <span class="kaiti-font">一</span>（剩余部分第一笔）
-  4. `i` <span class="kaiti-font">丨</span>（剩余部分第二笔）
+  1. `g` <span class="kaiti-yima">扌</span>
+  2. `l` <span class="kaiti-yima">土</span>
+  3. `e` <span class="kaiti-yima">一</span>（剩余部分第一笔）
+  4. `i` <span class="kaiti-yima">丨</span>（剩余部分第二笔）
 * **一**：编码是 `je`，分别指：
-  1. `j` <span class="kaiti-font">一</span> （一画字根）
-  2. `e` <span class="kaiti-font">一</span> （一字第一笔）
+  1. `j` <span class="kaiti-yima">一</span> （一画字根）
+  2. `e` <span class="kaiti-yima">一</span> （一字第一笔）
 * **丫**：编码是 `wjiii`，分别指：
-  1. `w` <span class="kaiti-font">丷</span>
-  2. `j` <span class="kaiti-font">丨</span>
-  3. `i` <span class="kaiti-font">丨</span>（重复最后一笔）
-  4. `i` <span class="kaiti-font">丨</span>（重复最后一笔）
-  5. `i` <span class="kaiti-font">丨</span>（重复最后一笔）
+  1. `w` <span class="kaiti-yima">丷</span>
+  2. `j` <span class="kaiti-yima">丨</span>
+  3. `i` <span class="kaiti-yima">丨</span>（重复最后一笔）
+  4. `i` <span class="kaiti-yima">丨</span>（重复最后一笔）
+  5. `i` <span class="kaiti-yima">丨</span>（重复最后一笔）
 
 ### 2.3 简码规则
 - 简码设计规则：依据字频。
 - 出简不出全：当一个字可以使用简码无重码时则不输入再继续输入剩余部件编码。
 
   **示例**：
-  - 【能】拆分为 <span class="kaiti-font">厶⺝匕</span>，但是输入 <span class="kaiti-font">厶月</span> 编码 `ch` 时已无重码，所以不继续输入。
-  - 【熊】拆分为 <span class="kaiti-font">厶⺝匕灬</span>，但是输入 <span class="kaiti-font">厶月</span> 编码 `ch` 时与【能】重码，所以继续输入。
+  - 【能】拆分为 <span class="kaiti-yima">厶⺝匕</span>，但是输入 <span class="kaiti-yima">厶月</span> 编码 `ch` 时已无重码，所以不继续输入。
+  - 【熊】拆分为 <span class="kaiti-yima">厶⺝匕灬</span>，但是输入 <span class="kaiti-yima">厶月</span> 编码 `ch` 时与【能】重码，所以继续输入。
 
 ## 3. 部件字根
 字根总共 470 个，归类后 318 个字根。

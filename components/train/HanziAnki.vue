@@ -1,7 +1,7 @@
 <script setup lang="ts">
 /** 单字练习 */
 import { shallowRef, onMounted, provide } from "vue";
-import { ChaiCard, ZigenCard, cache, fetchJsonWithCache } from "./share";
+import { HanziCard, ZigenCard, cache, fetchJsonWithCache } from "./share";
 import Train from "./anki/TrainAnki.vue";
 
 const p = defineProps<{
@@ -26,14 +26,14 @@ if (range) {
     cardsName += `_${range[0]}_${range[1]}`
 }
 
-const cards = shallowRef<ChaiCard[]>(cache[cardsName])
+const cards = shallowRef<HanziCard[]>(cache[cardsName])
 
 onMounted(async () => {
     /** 初始化时候，要处理请求json数据、截断数据、补齐编码字段 */
 
     if (cards.value) return;
 
-    let chaifenCards: ChaiCard[] = await fetchJsonWithCache(p.chaiJson)
+    let chaifenCards: HanziCard[] = await fetchJsonWithCache(p.chaiJson)
     if (range) {
         chaifenCards = chaifenCards.slice(range[0], range[1])
     }

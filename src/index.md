@@ -21,6 +21,9 @@ hero:
       link: http://yima.ysepan.com/
 
 features:
+  - title: 奕码
+    details: 三码定长，小码是字根的拼音，重码少
+    link: /grand-code/
   - title: 易码
     details: 三码定长或者四二顶，归类后268个字根
     link: /easy-code/

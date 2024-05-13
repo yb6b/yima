@@ -5,7 +5,7 @@ import autoprefixer from "autoprefixer"
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "易码",
+  title: "YIMA 顶功",
   description: "极致的乱序纯形顶功输入方案",
   lang: "zh-hans-CN",
   outDir: "../dist",
@@ -14,6 +14,11 @@ export default defineConfig({
       light: "light-plus",
       dark: "material-theme-palenight",
     },
+    anchor: {
+      slugify(s) {
+        return encodeURIComponent(String(s).trim().toLowerCase().replace(/\s+/g, '-'))
+      }
+    }
   },
   head: [
     ['link', { rel: 'icon', href: 'icon.svg', type: 'image/svg+xml' }],
@@ -36,6 +41,7 @@ export default defineConfig({
       { text: '主页', link: '/' },
       {
         text: '输入方案', items: [
+          { text: '奕码', link: '/grand-code/' },
           { text: '易码（四二顶）', link: '/easy-code/' },
           { text: '逸码（二码顶）', link: '/graceful-code/' },
           { text: '晨逸（两笔二码顶）', link: '/chenyi/' },
@@ -63,6 +69,28 @@ export default defineConfig({
         {
           text: '常用两千字练习',
           link: '/easy-code/zi2'
+        },
+      ],
+      '/grand-code': [
+        {
+          text: '奕码介绍',
+          link: '/grand-code/',
+        },
+        {
+          text: '反查',
+          link: '/grand-code/search',
+        },
+        {
+          text: '字根小码练习',
+          link: '/grand-code/xiao',
+        },
+        {
+          text: '字根大码练习',
+          link: '/grand-code/da',
+        },
+        {
+          text: '常用一千字练习',
+          link: '/grand-code/zi'
         },
       ],
       '/graceful-code': [

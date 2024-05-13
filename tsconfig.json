@@ -15,6 +15,7 @@
     "noEmit": true,
     "esModuleInterop": true,
     "compilerOptions": {
+        "strict": true,
         "target": "ESNext",
         "moduleResolution": "node",
         "module": "ESNext",
