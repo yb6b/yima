@@ -1,6 +1,7 @@
 export * from '../train/share'
 import { HanziCard, ZigenCardMap, HanziCardMap, fetchJsonWithCache } from "../train/share";
 import { useRoute } from "vitepress";
+
 // 用于缓存四角号码数据
 export let cache: Record<string, any> = {}
 
@@ -95,7 +96,9 @@ export function prehandleJson(json: object) {
 /** 从vitepress的路由里推断当前使用的方案英文名称 */
 export function getSchemaNameFromRoute() {
     const route = useRoute()
-    return route.path.split('/')[1]
+    const routeSplit = route.path.split('/')
+    if (routeSplit[1] === 'yima') return routeSplit[2]
+    return routeSplit[1]
 }
 
 /** 请求汉字、字根的JSON文件 如果没有填JSON名,会根据URl推断一个 */
