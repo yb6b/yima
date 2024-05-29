@@ -10,7 +10,7 @@
     "medium-zoom": "^1.1.0",
     "postcss": "^8.4.35",
     "tailwindcss": "^3.4.1",
-    "vitepress": "1.0.0-rc.44",
+    "vitepress": "1.2.2",
     "vue": "^3.4.21"
   },
   "license": "GPL-3.0-only",

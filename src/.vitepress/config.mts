@@ -5,7 +5,7 @@ import autoprefixer from "autoprefixer"
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "YIMA 顶功",
+  title: "易码顶功",
   description: "极致的乱序纯形顶功输入方案",
   lang: "zh-hans-CN",
   outDir: "../dist",
@@ -26,6 +26,7 @@ export default defineConfig({
   vite: {
     css: {
       postcss: {
+        //@ts-expect-error
         plugins: [tailwind(), autoprefixer()],
       },
     },
