@@ -76,7 +76,7 @@ function commit(words: string) {
 
 function onClickCandidate(card: HanziCard) {
     commit(card.name)
-    textarea.value?.focus()
+    // textarea.value?.focus()
     candidatePageIndex.value = 0
     candidateCodes.value = ''
 }
