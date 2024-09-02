@@ -3,12 +3,12 @@
     src: url("/kaiti-yima.woff2") format("woff2");
 }
 
-.kaiti {
+.kaiti-zigen {
     font-family: "kaiti", "楷体", 'TH-Feon', 'TH-Tshyn-P2', 'TH-Tshyn-P0', 'TH-Tshyn-P1', 'TH-Tshyn-P16', '宋体', Baskerville, Georgia, "Liberation Serif", "Kaiti SC", STKaiti, "AR PL UKai CN", "AR PL UKai HK", "AR PL UKai TW", "AR PL UKai TW MBE", "AR PL KaitiM GB", KaiTi, KaiTi_GB2312, DFKai-SB, "TW\-Kai", serif;
 }
 
 .kaiti-yima {
-    font-family: "kaiti-yima", "kaiti", "楷体";
+    font-family: "kaiti-yima", "楷体";
 }
 
 @font-face {

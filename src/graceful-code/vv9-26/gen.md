@@ -8,4 +8,4 @@ import {high} from "../high.ts"
 
 # 逸码VV9·26键字根练习
 
-<Train name="vv9_26" fontClass="kaiti-yima" zigenJson="/vv9-26/zigen.json" :high />
+<Train name="vv9_26" fontClass="kaiti-zigen" zigenJson="/vv9-26/zigen.json" :high />

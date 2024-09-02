@@ -56,21 +56,21 @@ const cusRestart = () => {
 </script>
 
 <template>
-    <CardLayout :progress="progress.familiar" :max="cards.length" :isCorrect :id="name" @restart="cusRestart">
-        <div class="flex justify-around mb-8">
-            <div :key="card!.name"
-                :class="['text-6xl animate__animated', 'kaiti', { 'text-red-400': !isCorrect, 'animate__headShake': !isCorrect }]">
-                {{ card!.name }}</div>
+<CardLayout :progress="progress.familiar" :max="cards.length" :isCorrect :id="name" @restart="cusRestart">
+    <div class="flex justify-around mb-8">
+        <div :key="card!.name"
+            :class="['text-6xl animate__animated', 'kaiti-zigen', { 'text-red-400': !isCorrect, 'animate__headShake': !isCorrect }]">
+            {{ card!.name }}</div>
 
-        </div>
-        <div class="flex justify-center p-5">
-            <input id="input_el" type="text" placeholder="输入编码" v-model="userKeys"
-                :class="['input w-half max-w-xs input-bordered text-center input-sm dark:bg-slate-800 bg-white', { 'input-error': !isCorrect }]" />
-        </div>
-        <div :class="['text-center', { 'opacity-0': isCorrect }]">答案是 <b class="font-mono">{{ card!.key
-                }}</b>
-            <span :class="[zigenFontClass, 'tracking-widest opacity-80']" v-if="'comp' in card!">(<span
-                    v-for="zg of card.comp" :class="{ 'round-bg': highlightStrokes.has(zg) }">{{ zg }}</span>)</span>
-        </div>
-    </CardLayout>
+    </div>
+    <div class="flex justify-center p-5">
+        <input id="input_el" type="text" placeholder="输入编码" v-model="userKeys"
+            :class="['input w-half max-w-xs input-bordered text-center input-sm dark:bg-slate-800 bg-white', { 'input-error': !isCorrect }]" />
+    </div>
+    <div :class="['text-center', { 'opacity-0': isCorrect }]">答案是
+        <b class="font-mono">{{ card!.key }}</b>
+        <span :class="[zigenFontClass, 'tracking-widest opacity-80']" v-if="'comp' in card!">
+            (<span v-for="zg of card.comp" :class="{ 'round-bg': highlightStrokes.has(zg) }">{{ zg }}</span>)</span>
+    </div>
+</CardLayout>
 </template>

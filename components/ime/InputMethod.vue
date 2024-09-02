@@ -10,7 +10,7 @@ const props = defineProps<{
     rule: ImeRule
 }>()
 
-console.log(props.data);
+//console.log(props.data);
 //#region 候选条
 const candidateCodes = ref('')
 
@@ -211,55 +211,54 @@ function onKeydown(e: KeyboardEvent) {
 
 </script>
 
-<template>
-    <!-- 文本输入框 -->
-    <div class="pt-3">
-        <textarea v-model="text" ref="textarea"
-            class="textarea textarea-bordered textarea-md w-full max-w-screen-sm bg-neutral-50 dark:bg-neutral-700"
-            style="border-style: solid" placeholder="点击这里开始输入" @keydown="onKeydown"></textarea>
-    </div>
+<template><!-- 文本输入框 -->
+<div class="pt-3">
+    <textarea v-model="text" ref="textarea"
+        class="textarea textarea-bordered textarea-md w-full max-w-screen-sm bg-neutral-50 dark:bg-neutral-700"
+        style="border-style: solid" placeholder="点击这里开始输入" @keydown="onKeydown"></textarea>
+</div>
 
-    <Keyboard :layout="26" enable @click="onClick">
-        <template #codes>
-            <div class="h-4" v-if="candidateCodes === ''"></div>
-            <div v-else class="text-xs bg-neutral-200 dark:bg-neutral-900 w-max px-2 h-4 select-none">
-                {{ candidateCodes }}
+<Keyboard :layout="26" enable @click="onClick">
+    <template #codes>
+        <div class="h-4" v-if="candidateCodes === ''"></div>
+        <div v-else class="text-xs bg-neutral-200 dark:bg-neutral-900 w-max px-2 h-4 select-none">
+            {{ candidateCodes }}
+        </div>
+    </template>
+    <template #cadidate>
+        <template v-if="candidateHanzi.length === 0">
+            <div class="text-sm text-slate-500 ml-6 mt-1" v-if="candidateCodes.length === 0">
+                <slot>
+                    <!-- 没有输入时默认显示的内容 -->
+                    按下键盘或点击下方按钮
+                </slot>
+            </div>
+            <div class="text-sm text-slate-400 dark:text-slate-500 ml-6 mt-1" v-else>空码</div>
+        </template>
+        <template v-else>
+            <div class="flex-auto overflow-x-auto overflow-y-hidden">
+                <button class="px-2 hover:bg-slate-200 dark:hover:bg-slate-900" v-for="n, i of candidatePage"
+                    @click="onClickCandidate(n)">
+                    <!-- 序号 -->
+                    <span class="text-sm text-slate-400 dark:text-slate-500">{{ i + 1 }}.</span>
+                    <!-- 词条 -->
+                    <span class="select-text px-1 text-slate-900 dark:text-slate-200">
+                        {{ n.name }}</span>
+                    <!-- 后序编码 -->
+                    <span class="text-sm text-blue-400 dark:text-blue-500 dark:opacity-70">{{
+                        n.key!.slice(candidateCodes.length)
+                    }}</span>
+                </button>
+            </div>
+
+            <!-- 翻页按钮 -->
+            <div class="float-right mx-2">
+                <button :class="{ 'text-transparent': disablePreviousPageBtn }" :disabled="disablePreviousPageBtn"
+                    @click="candidatePageIndex--">◂</button>
+                <button :class="{ 'text-transparent': disableNextPageBtn }" :disabled="disableNextPageBtn"
+                    @click="candidatePageIndex++">▸</button>
             </div>
         </template>
-        <template #cadidate>
-            <template v-if="candidateHanzi.length === 0">
-                <div class="text-sm text-slate-500 ml-6 mt-1" v-if="candidateCodes.length === 0">
-                    <slot>
-                        <!-- 没有输入时默认显示的内容 -->
-                        按下键盘或点击下方按钮
-                    </slot>
-                </div>
-                <div class="text-sm text-slate-400 dark:text-slate-500 ml-6 mt-1" v-else>空码</div>
-            </template>
-            <template v-else>
-                <div class="flex-auto overflow-x-auto overflow-y-hidden">
-                    <button class="px-2 hover:bg-slate-200 dark:hover:bg-slate-900" v-for="n, i of candidatePage"
-                        @click="onClickCandidate(n)">
-                        <!-- 序号 -->
-                        <span class="text-sm text-slate-400 dark:text-slate-500">{{ i + 1 }}.</span>
-                        <!-- 词条 -->
-                        <span class="select-text px-1 text-slate-900 dark:text-slate-200">
-                            {{ n.name }}</span>
-                        <!-- 后序编码 -->
-                        <span class="text-sm text-blue-400 dark:text-blue-500 dark:opacity-70">{{
-                            n.key!.slice(candidateCodes.length)
-                        }}</span>
-                    </button>
-                </div>
-
-                <!-- 翻页按钮 -->
-                <div class="float-right mx-2">
-                    <button :class="{ 'text-transparent': disablePreviousPageBtn }" :disabled="disablePreviousPageBtn"
-                        @click="candidatePageIndex--">◂</button>
-                    <button :class="{ 'text-transparent': disableNextPageBtn }" :disabled="disableNextPageBtn"
-                        @click="candidatePageIndex++">▸</button>
-                </div>
-            </template>
-        </template>
-    </Keyboard>
+    </template>
+</Keyboard>
 </template>
