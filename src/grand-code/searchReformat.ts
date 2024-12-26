@@ -15,8 +15,10 @@ export const reformat: ReformatHandler = (hanziInfo, zigenMap) => {
         })
     }
 
+    // 最后一个字根的键位可能包含多个字符
     if (bmLength > compLength) {
         const lastData = result[compLength - 1]
+        // 剩余的字符添加到最后一个字根的键位中
         for (let i = compLength; i < bmLength; i++) {
             lastData.key += bm[i]
         }

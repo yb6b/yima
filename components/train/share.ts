@@ -15,6 +15,12 @@ export interface ZigenCard {
     kind?: 'b' | 'eb'
     /** 小码所在键，奕码用 */
     secondary?: string
+    /** 字根归类：它与哪个字根相似 */
+    class?: string
+    /** 内部属性，字根归类用的类似字根，程序会修改这个属性，json里不要填写 */
+    _classZigen?: ZigenCard[]
+    /** 内部属性 */
+    _idx?: number
 }
 
 /** 汉字信息 */

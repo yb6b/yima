@@ -41,6 +41,10 @@ export const sidebar: DefaultTheme.SidebarMulti = {
             link: '/grand-code/ime',
         },
         {
+            text: '字根练习（大小码）',
+            link: '/grand-code/zigen',
+        },
+        {
             text: '字根大码练习',
             link: '/grand-code/da',
         },

@@ -37,8 +37,8 @@ watch(() => p.progress, async (newV, oldV) => {
 
 <template>
     <div
-        :class="['md:w-2/3 w-full shadow-sm my-12 pb-24 bg-opacity-10 transition-color rounded-md', { 'bg-red-700': !isCorrect, 'bg-slate-500': isCorrect }]">
-        <div class="flex justify-center mb-24">
+         :class="['md:w-2/3 w-full shadow-sm my-12 pb-14 bg-opacity-10 transition-color rounded-md', { 'bg-red-700': !isCorrect, 'bg-slate-500': isCorrect }]">
+        <div class="flex justify-center mb-10">
             <progress class="progress w-full" :value="progress" :max />
         </div>
         <template v-if="showConfetti">

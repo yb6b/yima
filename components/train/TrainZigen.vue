@@ -11,13 +11,21 @@ const p = defineProps<{
     zigenJson?: string,
     /** 字根的字体CSS名称, 默认是 欧体 */
     zigenFont?: string
-    /** 是否训练小码,   
+    /** 训练小码模式,   
      * 要确保 zigen.json 里有 secondary 字段,   
      * 用于奕码 */
     trainSecondary?: boolean
+    /** 
+     * 同时训练大小码模式，
+     * 要确保 zigen.json 里有 secondary 字段,   
+     * 用于逸码 */
+    trainBoth?: boolean
+    /** 字根有归并信息 */
+    hasClass?: boolean
 }>()
 
 provide("font", p.zigenFont)
+provide("hasClass", p.hasClass)
 
 const schemaName = getSchemaNameFromRoute()
 const name = p.name || schemaName
@@ -32,6 +40,9 @@ onMounted(async () => {
     if (p.trainSecondary) {
         cards.value = zgJson.filter(zg => 'secondary' in zg)
             .map(zg => ({ ...zg, key: zg.secondary! }))
+    } else if (p.trainBoth) {
+        cards.value = zgJson.filter(zg => 'secondary' in zg)
+            .map(zg => ({ ...zg, key: zg.key + zg.secondary! }))
     } else {
         cards.value = zgJson
     }
