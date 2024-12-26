@@ -41,12 +41,12 @@ export const sidebar: DefaultTheme.SidebarMulti = {
             link: '/grand-code/ime',
         },
         {
-            text: '字根小码练习',
-            link: '/grand-code/xiao',
-        },
-        {
             text: '字根大码练习',
             link: '/grand-code/da',
+        },
+        {
+            text: '字根小码练习',
+            link: '/grand-code/xiao',
         },
         {
             text: '常用一千字练习',
