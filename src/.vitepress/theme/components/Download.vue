@@ -5,7 +5,7 @@ defineProps<{
     urls: [filename: string, zhName: string, repoUrlPrexfix?: string][][]
 }>()
 
-const mirrorPrefix = 'https://mirror.ghproxy.com/'
+const mirrorPrefix = 'https://gh-proxy.com/'
 const repoReleaseUrlPrefix = 'https://github.com/yb6b/yima/releases/download/'
 
 const mirrorRef = useLocalStorage('yima-download-mirror', false)

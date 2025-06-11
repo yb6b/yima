@@ -6,7 +6,7 @@ description: 最成熟的版本
 <script setup>
 const urls = [
   [
-    ["v20/duoduo-4.0.setup.exe.7z", "多多4.0安装包.7z"],
+    // ["v20/duoduo-4.0.setup.exe.7z", "多多4.0安装包.7z"],
     ["main.zip", "Rime 配置文件.zip",'https://github.com/lakent/rime-yi/archive/refs/heads/'],
   ],
   [
