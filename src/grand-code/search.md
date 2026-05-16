@@ -8,6 +8,6 @@ import {reformat} from './searchReformat.ts'
 
 # 奕码拆分反查
 
-<Search zigenFont="outi-yima" :reformat noZigenJson/>
+<Search zigenFont="noto-chai" :reformat noZigenJson/>
 
 

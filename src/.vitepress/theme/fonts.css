@@ -20,6 +20,15 @@
     font-family: "outi-yima", "欧体楷书", "楷体";
 }
 
+@font-face {
+    font-family: "noto-chai";
+    src: url("/NotoSerifSCChai-Regular-1.1.woff2") format("woff2");
+}
+
+.noto-chai {
+    font-family: "noto-chai", "楷体";
+}
+
 :root {
 
     --vp-c-brand-1: var(--vp-c-red-1);

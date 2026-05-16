@@ -7,4 +7,4 @@ import Train from "@/train/TrainZigen.vue"
 
 # 奕码字根练习
 
-<Train name="grand_code"/>
+<Train name="grand_code", zigenFont="noto-chai"/>
