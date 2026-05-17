@@ -59,7 +59,7 @@ const cusRestart = () => {
 <CardLayout :progress="progress.familiar" :max="cards.length" :isCorrect :id="name" @restart="cusRestart">
     <div class="flex justify-around mb-8">
         <div :key="card!.name"
-            :class="['text-6xl animate__animated', 'kaiti-zigen', { 'text-red-400': !isCorrect, 'animate__headShake': !isCorrect }]">
+            :class="['text-6xl animate__animated', zigenFontClass, { 'text-red-400': !isCorrect, 'animate__headShake': !isCorrect }]">
             {{ card!.name }}</div>
 
     </div>

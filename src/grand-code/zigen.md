@@ -7,7 +7,11 @@ import Train from "@/train/TrainZigen.vue"
 
 # 奕码字根练习（大码小码混合）
 
-<Train name="grand_code_both" zigenJson="/grand-code/zigen2.json" trainBoth hasClass/>
+<Train name="grand_code_both" zigenJson="/grand-code/zigen.json", zigenFont="noto-chai" trainBoth hasClass/>
+
+<script>
+// 所以 zigen.json 和 zigen2.json 有什么区别？
+</script>
 
 :::info 提示
 奕码的字根小码大多是拼音首字母。

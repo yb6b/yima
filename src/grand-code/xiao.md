@@ -7,7 +7,7 @@ import Train from "@/train/TrainZigen.vue"
 
 # 奕码字根小码练习
 
-<Train name="grand_code_secondary" trainSecondary/>
+<Train name="grand_code_secondary", zigenFont="noto-chai" trainSecondary/>
 
 :::tip 提示
 奕码的字根大多是拼音首字母。

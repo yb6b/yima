@@ -6,5 +6,5 @@ import Train from "@/train/TrainHanzi.vue"
 </script>
 # 奕码 常用 1000 字练习
 
-<Train name="grand_code" zigenJson="/grand-code/zigen.json" chaiJson="/grand-code/chaifen.json" 
+<Train name="grand_code" zigenJson="/grand-code/zigen.json" chaiJson="/grand-code/chaifen.json" zigenFont="noto-chai"
     :range="[0,1000]" />
